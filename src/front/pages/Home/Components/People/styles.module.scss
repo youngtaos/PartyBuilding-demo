@@ -1,0 +1,66 @@
+.PeopleWrapper{
+    position: relative;
+    overflow:hidden;
+    height: 740px;
+    p{
+      position: absolute; 
+      right: 40px;
+      top: 50px; 
+      color: rgb(207, 5, 5);
+      font-weight: bold;
+    }
+    .list{
+        display: flex;
+        justify-content: space-around;
+        margin: 10px;
+        margin-right: 0;
+        margin-top: 100px;
+        flex-wrap: wrap;
+        .item{
+            width: 140px;
+            height: 140px;
+            background-color: rgb(243, 30, 30);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            color: white;
+            font-size: 20px;
+            border-radius: 12px;
+            border: 2px solid rgb(219, 73, 16);
+        }
+        .more{
+            width: 140px;
+            height: 140px;
+            background-color: rgb(245, 211, 43);
+            display: flex;
+            align-items: center;
+            justify-content: center;    
+            margin: 10px;
+            color: white;
+            font-size: 40px;
+            border-radius: 12px;
+            //border: 2px solid rgb(219, 73, 16);
+        }
+    }
+}
+.modalList{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    height: 500px;
+    overflow-y: scroll;
+    .Modalitem{
+        width: 140px;
+        height: 140px;
+        background-color: rgb(243, 30, 30);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+        color: white;
+        font-size: 20px;
+        border-radius: 12px;
+        border: 2px solid rgb(219, 73, 16);           
+    }
+}
