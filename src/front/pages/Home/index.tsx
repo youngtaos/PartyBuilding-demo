@@ -22,14 +22,7 @@ interface data {
 }
 
 const Home: React.FC = () => {
-  const [isLogin, setIsLogin] = useState(true);
   const [schema, setSchema] = useState<data[]>(defaultSchema);
-  useEffect(() => {
-    axios.get("/api/isLogin").then((res) => {
-      const data = res?.data?.data;
-      setIsLogin(data);
-    });
-  }, [isLogin]);
   useEffect(() => {
     axios.get("/api/showData").then((res) => {
       const data = res?.data?.data;
@@ -40,21 +33,18 @@ const Home: React.FC = () => {
   return (
     <div className={styles.HomeWrapper}>
       <NavBar></NavBar>
-      {isLogin ? (
-        <div>
-          <Banner></Banner>
-          <div className={styles.main}>
-            <div className="site-card-border-less-wrapper">
-              {schema ? <Article schema={schema} /> : <Blank />}
-            </div>
-            <div className="site-card-border-less-wrapper">
-              <People />
-            </div>
+
+      <div>
+        <Banner></Banner>
+        <div className={styles.main}>
+          <div className="site-card-border-less-wrapper">
+            {schema ? <Article schema={schema} /> : <Blank />}
+          </div>
+          <div className="site-card-border-less-wrapper">
+            <People />
           </div>
         </div>
-      ) : (
-        <Navigate to="/login" />
-      )}
+      </div>
     </div>
   );
 };

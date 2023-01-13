@@ -9,10 +9,11 @@
     display: flex;
     justify-content: flex-end;
     .words{
-        width: 120px;
+        width: 180px;
         display: flex;
         font-size: 17px;
         color: white;
         justify-content: space-around;
+        cursor: pointer;
     }
 }

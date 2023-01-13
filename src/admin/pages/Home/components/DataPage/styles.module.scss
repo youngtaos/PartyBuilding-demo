@@ -1,0 +1,19 @@
+.Wrapper{
+    width: auto;
+    .DataContent{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .left{
+            width: 1000px;
+            height: 400px;
+            background-color: blue;
+            display: flex;
+        }
+        .dora{
+            height: 700px;
+            width: 1000px;
+        }
+    }
+    
+}

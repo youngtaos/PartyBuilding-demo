@@ -4,7 +4,7 @@ import { Button, Checkbox, Form, Input, message } from "antd";
 import axios from "axios";
 import qs from "qs";
 import { Navigate } from "react-router-dom";
-import NavBar from "../../common/Navbar/index";
+import NavBar from "../../../front/common/Navbar/index";
 
 const Login: React.FC = () => {
   const [isLogin, setIsLogin] = useState(false);
