@@ -1,0 +1,70 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+    min-height: 1200px;
+    padding: 90px;
+    background-color: rgb(234, 236, 236);
+    .topIcon{
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        font-size: 60px;
+        color: rgb(241, 225, 53);
+        display: flex;
+        width: 52px;
+        height: 52px;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(229, 24, 24);
+        font-weight: bold;
+    }
+    .bkImg{
+        -webkit-filter: blur(4px);  
+        filter: blur(18px);  
+        //margin-top: 20px;
+        img{
+            width: 1200px;
+            height: 1200px;
+        }
+    }
+    .main{
+        background-color: white;
+        top: 400px;
+        position: absolute;
+        width: 1250px;
+        min-height: 800px;
+        margin: 100px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        h2{
+            position: absolute;
+            top: -80px;
+            left: 40px;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.4);
+            color: rgb(184, 13, 13);
+        }
+        .content{
+            font-size: 22px;
+            line-height: 40px;
+        }
+        .imgBox{
+            position: absolute;
+            top: -380px;
+            left: 80px;
+        }
+        .message{
+            margin-left: 330px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+    }
+    
+}

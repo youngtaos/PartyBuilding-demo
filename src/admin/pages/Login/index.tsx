@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import styles from "./styles.module.scss";
-import { Button, Checkbox, Form, Input, message } from "antd";
+import { Button, Form, Input, message } from "antd";
 import axios from "axios";
 import qs from "qs";
 import { Navigate } from "react-router-dom";
-import NavBar from "../../../front/common/Navbar/index";
 
 const Login: React.FC = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -33,12 +32,11 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div>
-      <NavBar></NavBar>
+    <div className={styles.loginWrapper}>
       {isLogin ? (
         <Navigate to="/" />
       ) : (
-        <div className={styles.loginWrapper}>
+        <div className={styles.loginContainer}>
           <Form
             className={styles.login}
             name="basic"
@@ -50,35 +48,27 @@ const Login: React.FC = () => {
             autoComplete="off"
           >
             <Form.Item
-              label="账号"
+              label={
+                <span style={{ fontSize: 22, fontWeight: "bold" }}>账号</span>
+              }
               name="username"
-              rules={[
-                { required: true, message: "Please input your username!" },
-              ]}
+              rules={[{ required: true, message: "请输入账号" }]}
             >
               <Input />
             </Form.Item>
 
             <Form.Item
-              label="密码"
+              label={
+                <span style={{ fontSize: 22, fontWeight: "bold" }}>密码</span>
+              }
               name="password"
-              rules={[
-                { required: true, message: "Please input your password!" },
-              ]}
+              rules={[{ required: true, message: "请输入密码!" }]}
             >
-              <Input.Password />
-            </Form.Item>
-
-            <Form.Item
-              name="remember"
-              valuePropName="checked"
-              wrapperCol={{ offset: 8, span: 16 }}
-            >
-              <Checkbox>记住密码</Checkbox>
+              <Input type="password" />
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 7, span: 16 }}>
-              <Button type="primary" htmlType="submit">
+              <Button className={styles.subtn} type="text" htmlType="submit">
                 登录
               </Button>
             </Form.Item>

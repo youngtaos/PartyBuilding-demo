@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
 const handleManagePageRedirect = () => {
-  window.location.href = "/admin.html";
+  window.location.href = "/admin.html#/data";
 };
 const NavBar: React.FC = () => {
   return (

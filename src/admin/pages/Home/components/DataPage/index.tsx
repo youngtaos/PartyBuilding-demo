@@ -2,12 +2,8 @@ import { Button } from "antd";
 import styles from "./styles.module.scss";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  getChangeSchemaAction,
-  changePeopleInfoAction,
-} from "../../Store/action";
-import Echart from "../Echart";
+import { useSelector } from "react-redux";
+import Echart from "./Components/Echart/index";
 import * as echarts from "echarts/core";
 import {
   TitleComponent,
@@ -20,6 +16,8 @@ import {
 import { PieChart, PieSeriesOption } from "echarts/charts";
 import { LabelLayout } from "echarts/features";
 import { CanvasRenderer } from "echarts/renderers";
+import qs from "qs";
+import DataList from "./Components/DataList";
 echarts.use([
   TitleComponent,
   TooltipComponent,
@@ -34,16 +32,31 @@ export type EChartsOption = echarts.ComposeOption<
   | VisualMapComponentOption
   | PieSeriesOption
 >;
+export interface data {
+  title: string;
+  content: string;
+  imgSrc: string;
+  academy: string;
+  message: string;
+  people: Array<string>;
+  isReaded: boolean;
+  articleUrl: string;
+}
 
 const DataPage: React.FC = () => {
   const peopleInfo = useSelector((state: any) => {
     return state.homeManagement.peopleInfo;
   });
+
   const temp: any = peopleInfo.map((item: any) => {
     return {
       value: parseInt(`${item.articleNum}`),
       name: `${item.name}`,
     };
+  });
+  let names: Array<string> = [];
+  peopleInfo.forEach((item: any) => {
+    names.push(`${item.name}`);
   });
   const [option, setOption] = useState<EChartsOption>({});
   useEffect(() => {
@@ -108,8 +121,15 @@ const DataPage: React.FC = () => {
     });
   }, [peopleInfo]);
   const handleGetData = () => {
-    axios.get("/api/getData").then((res) => {});
+    axios
+      .post("/api/getData", qs.stringify({ names: JSON.stringify(names) }), {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      })
+      .then((res) => {
+        console.log("success");
+      });
   };
+
   return (
     <div className={styles.Wrapper}>
       <Button
@@ -121,13 +141,11 @@ const DataPage: React.FC = () => {
       >
         爬取数据
       </Button>
-      {/* <div className={styles.DataShow}>
-        {schema.map((item: any, index: number) => {
-          return <div key={index}>{item.title}</div>;
-        })}
-      </div> */}
+
       <div className={styles.DataContent}>
-        <div className={styles.left}></div>
+        <div className={styles.left}>
+          <DataList />
+        </div>
         <div id="dora" className={styles.dora}>
           <Echart option={option} />
         </div>

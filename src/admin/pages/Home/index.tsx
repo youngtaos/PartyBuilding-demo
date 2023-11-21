@@ -1,9 +1,20 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { NavLink as Link, Navigate, Outlet } from "react-router-dom";
+import {
+  NavLink as Link,
+  Navigate,
+  Outlet,
+  useLocation,
+} from "react-router-dom";
 import { Layout, Menu, theme } from "antd";
-import { UserOutlined, VideoCameraOutlined } from "@ant-design/icons";
+import {
+  AppstoreOutlined,
+  EnterOutlined,
+  PieChartOutlined,
+  SnippetsOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import styles from "./styles.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { getChangeSchemaAction, changePeopleInfoAction } from "./Store/action";
@@ -17,7 +28,7 @@ const handleLogout = () => {
   });
 };
 const { Header, Content, Footer, Sider } = Layout;
-const getItem = (label: any, key: string, icon: any, children: any) => {
+const getItem = (label: any, key: string, icon: any, children?: any) => {
   return {
     key,
     icon,
@@ -25,17 +36,23 @@ const getItem = (label: any, key: string, icon: any, children: any) => {
     label,
   };
 };
+const useRouteType = () => {
+  const untis = useLocation().pathname.split("/");
+  return untis[untis.length - 1];
+};
+
 const items = [
-  getItem(
-    <Link to="/data">数据爬取</Link>,
-    "/data",
-    <VideoCameraOutlined />,
-    ""
-  ),
+  getItem(<Link to="/data">数据爬取</Link>, "/data", <PieChartOutlined />),
   getItem(
     <Link to="/people">支部人员管理</Link>,
     "/people",
     <UserOutlined />,
+    ""
+  ),
+  getItem(
+    <Link to="/article">文章编辑</Link>,
+    "/article",
+    <SnippetsOutlined />,
     ""
   ),
   getItem(
@@ -47,20 +64,20 @@ const items = [
       进入前台页面
     </div>,
     "/front",
-    <UserOutlined />,
+    <AppstoreOutlined />,
     ""
   ),
   getItem(
     <div
       onClick={() => {
         handleLogout();
-        window.location.href = "/admin.html";
+        window.location.href = "/";
       }}
     >
       退出登录
     </div>,
     "/logout",
-    <UserOutlined />,
+    <EnterOutlined />,
     ""
   ),
 ];
@@ -85,8 +102,9 @@ const useStore = () => {
 };
 
 const Home: React.FC = () => {
-  const { schema, changeSchema, changePeopleInfo } = useStore();
+  const { changeSchema, changePeopleInfo } = useStore();
   const [isLogin, setIsLogin] = useState(true);
+  const routeType = useRouteType();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -99,7 +117,7 @@ const Home: React.FC = () => {
     });
   }, []);
   useEffect(() => {
-    axios.get("/api/getPeopleInfo").then((res) => {
+    axios.get("/api/people/getPeopleInfo").then((res) => {
       const data = res?.data.data;
       if (data) {
         changePeopleInfo(data);
@@ -121,12 +139,8 @@ const Home: React.FC = () => {
             breakpoint="lg"
             collapsedWidth="0"
             className={styles.sider}
-            onBreakpoint={(broken) => {
-              //console.log(broken);
-            }}
-            onCollapse={(collapsed, type) => {
-              //console.log(collapsed, type);
-            }}
+            onBreakpoint={(broken) => {}}
+            onCollapse={(collapsed, type) => {}}
           >
             <div
               className={styles.title}
@@ -134,14 +148,14 @@ const Home: React.FC = () => {
                 handleHomePageRedirect();
               }}
             >
-              党建管理后台
+              智能党建信息系统
             </div>
             <Menu
               className={styles.menu}
               theme="dark"
               mode="inline"
-              defaultSelectedKeys={["1"]}
               items={items}
+              defaultSelectedKeys={[routeType]}
             />
           </Sider>
           <Layout>
@@ -158,10 +172,6 @@ const Home: React.FC = () => {
                 <Outlet />
               </div>
             </Content>
-
-            <Footer style={{ textAlign: "center" }}>
-              ©2023 Created by 2020444208 yangtaosen
-            </Footer>
           </Layout>
         </Layout>
       ) : (

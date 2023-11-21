@@ -1,18 +1,22 @@
 .Wrapper{
     width: auto;
+    height: 600px;
+    overflow: hidden;
     .DataContent{
         display: flex;
         justify-content: center;
         align-items: center;
         .left{
-            width: 1000px;
+            flex: 1;
             height: 400px;
-            background-color: blue;
-            display: flex;
+            overflow: scroll;
+            &::-webkit-scrollbar{
+                display: none;
+            }    
         }
         .dora{
-            height: 700px;
-            width: 1000px;
+            height: 500px;
+            flex: 1;
         }
     }
     

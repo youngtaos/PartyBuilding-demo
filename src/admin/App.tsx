@@ -5,6 +5,9 @@ import Login from "../admin/pages/Login";
 import Home from "./pages/Home";
 import DataPage from "./pages/Home/components/DataPage";
 import PeopleManage from "./pages/Home/components/PeopleManage";
+import ArticleManage from "./pages/Home/components/AticleManage";
+import MyEditor from "./pages/Home/components/AticleManage/Editor";
+import MyFloatButton from "./pages/Home/components/MyFoaltButton";
 
 const App: React.FC = () => {
   return (
@@ -19,9 +22,28 @@ const App: React.FC = () => {
               element={<PeopleManage />}
               caseSensitive={true}
             />
+            <Route
+              path="/article"
+              element={<ArticleManage />}
+              caseSensitive={true}
+            />
+            <Route path="OnEdit" element={<MyEditor />} />
           </Route>
         </Routes>
       </HashRouter>
+      <MyFloatButton />
+      <div style={{ textAlign: "center" }}>
+        版权所有：重庆科技学院智能技术与工程学院教工第一党支部
+        <div>
+          <a
+            href="https://beian.miit.goc.cn/"
+            target={"_blank"}
+            style={{ color: "black" }}
+          >
+            渝ICP备2023001099号-2
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
