@@ -1,14 +1,35 @@
 .loginWrapper{
-    margin: 0 auto;
-    width: 450px;
-    height: 300px;
-    border: 2px #969696 solid;
-    margin-top: 130px;
-    //border-radius: 20px;
     display: flex;
-    text-align: center;
-    .login{
-        padding:60px 30px 20px 80px ;
-        
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../../front/static/img/banner2.jpg');
+    background-size: cover;
+    .loginContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 35rem;
+        min-height: 30rem;
+        padding: 3.2rem 4rem;
+        border-radius: .3rem;
+        box-sizing: border-box;
+        background-color: rgba(255, 255, 255, .3);
+        box-shadow: rgba(5, 5, 5, 0.1) 0 0 10px;
+        text-align: center;
+        input{
+            border: none;
+            border-bottom: 3px solid black;
+            border-radius: 0%;
+            background: none;
+            color: black;
+            font-size: 1.3rem;
+            width: 14rem;
+        }
+        .subtn{
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
     }
 }

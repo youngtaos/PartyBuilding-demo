@@ -1,0 +1,23 @@
+.Wrapper{
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    .header{
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 35px;
+        .addBtn{
+            width: 100px;
+            
+            
+        }
+    }
+}
+.list{
+    height: 500px;
+    overflow: scroll;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}

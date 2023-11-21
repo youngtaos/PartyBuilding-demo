@@ -1,0 +1,14 @@
+.Wrapper{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center;
+    p{
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        font-weight: bold;
+        font-size: 21px;
+    }
+}

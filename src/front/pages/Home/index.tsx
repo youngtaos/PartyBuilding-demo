@@ -8,6 +8,7 @@ import Article from "./Components/Article";
 import styles from "./styles.module.scss";
 import Blank from "./Components/Blank";
 import People from "./Components/People";
+import { Empty } from "antd";
 
 const defaultSchema = [
   { content: "", title: "​", imgSrc: "", academy: "", message: "", people: "" },
@@ -37,12 +38,16 @@ const Home: React.FC = () => {
       <div>
         <Banner></Banner>
         <div className={styles.main}>
-          <div className="site-card-border-less-wrapper">
-            {schema ? <Article schema={schema} /> : <Blank />}
-          </div>
-          <div className="site-card-border-less-wrapper">
+          {!schema ? (
+            <Blank />
+          ) : (
+            <div className="site-card-border-less-wrapper">
+              <Article schema={schema} />
+            </div>
+          )}
+          {/* <div className="site-card-border-less-wrapper">
             <People />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
