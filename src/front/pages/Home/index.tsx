@@ -35,7 +35,7 @@ const Home: React.FC = () => {
       <NavBar></NavBar>
 
       <div>
-        <Banner></Banner>
+        <Banner schema={schema}></Banner>
         <div className={styles.main}>
           {!schema ? (
             <Blank />
