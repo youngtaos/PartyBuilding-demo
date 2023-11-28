@@ -27,7 +27,6 @@ const Home: React.FC = () => {
   useEffect(() => {
     axios.get("/api/showData").then((res) => {
       const data = res?.data?.data;
-      console.log(data);
       setSchema(data);
     });
   }, []);

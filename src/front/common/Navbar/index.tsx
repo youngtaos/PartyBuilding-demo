@@ -5,17 +5,18 @@ const handleManagePageRedirect = () => {
 };
 const NavBar: React.FC = () => {
   return (
-    <div className={styles.NavBarWrapper}>
-      <div className={styles.words}>
-        <span
-          onClick={() => {
-            handleManagePageRedirect();
-          }}
-        >
-          进入管理页面
-        </span>
-      </div>
-    </div>
+    // <div className={styles.NavBarWrapper}>
+    //   <div className={styles.words}>
+    //     <span
+    //       onClick={() => {
+    //         handleManagePageRedirect();
+    //       }}
+    //     >
+    //       进入管理页面
+    //     </span>
+    //   </div>
+    // </div>
+    <></>
   );
 };
 
