@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Pagination } from "antd";
 import type { PaginationProps } from "antd";
 
-interface data {
+export interface SchemaData {
   content: string;
   title: string;
   imgSrc: string;
@@ -19,7 +19,7 @@ const saveLocalIndex = (index: number) => [
 ];
 
 const Article: React.FC<{
-  schema: data[];
+  schema: SchemaData[];
 }> = (props) => {
   const schema = props?.schema;
   const [current, setCurrent] = useState(1);

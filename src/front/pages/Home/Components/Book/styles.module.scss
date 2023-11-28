@@ -1,0 +1,54 @@
+.wrapper{
+    position: absolute;
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+    .container{
+        align-items: flex-start;
+        gap: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        position: absolute;
+        >div{
+            flex: 1;
+            padding: 10px;
+        }
+        .card{
+            width: 400px;
+            height: 280px;
+            background-color: white;
+            position: absolute;
+            border-radius: 5px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;                
+            
+            .cardTittle{
+                font-size: 20px;
+                position: absolute;
+                bottom: 10px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;   
+                cursor: pointer; 
+            }
+
+            .des{
+                font-size: 12px;
+            }
+            .content{
+                font-size: 14px;
+                color: #333;
+            }
+        }
+    }
+}
