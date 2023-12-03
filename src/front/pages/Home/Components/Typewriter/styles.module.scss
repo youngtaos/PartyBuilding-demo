@@ -1,0 +1,25 @@
+
+.wrapper{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 40%;
+    left: 5%;
+    .one{
+        display: flex;
+        flex-direction: row;
+        font-size: 50px;
+        font-weight: 700;
+    }
+    .two{
+        display: flex;
+        flex-direction: row;
+        font-size: 70px;
+        font-weight: 900;
+    }
+    .font{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        //color: rgb(110, 7, 7);
+        color: whitesmoke;
+    }
+}

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-// import { motion } from "framer-motion";
 import styles from "./styles.module.scss";
 import { motion } from "framer-motion/dist/framer-motion";
 import { fadeIn, staggerContainer } from "../../../../util/motion";
 import { Image } from "antd";
 import { SchemaData } from "../Article";
 import { SyncOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 interface OverlappingDivsComponentProps {
   data: SchemaData[];
@@ -14,7 +14,6 @@ interface OverlappingDivsComponentProps {
 const OverlappingDivsComponent: React.FC<OverlappingDivsComponentProps> = ({
   data,
 }) => {
-  // const [currentIndex, setCurrentIndex] = useState(0);
   const [currentData, setCurrentData] = useState(data);
   const [rotate, setRotate] = useState(0);
   function nextPage() {
@@ -23,7 +22,6 @@ const OverlappingDivsComponent: React.FC<OverlappingDivsComponentProps> = ({
     temp.shift();
     temp.push(firstData);
     setCurrentData(temp.slice(0, 6).reverse());
-    console.log(temp.slice(0, 6).reverse());
     setRotate(rotate + 90);
   }
   useEffect(() => {
@@ -38,8 +36,6 @@ const OverlappingDivsComponent: React.FC<OverlappingDivsComponentProps> = ({
         whileInView="show"
         viewport={{ once: false, amount: 0.25 }}
       >
-        {/* <a id="skill" className="anchor2"></a> */}
-
         <div
           className={`paddings yPaddings flexCenter innerWidth ${styles.container}`}
         >
@@ -74,7 +70,11 @@ const OverlappingDivsComponent: React.FC<OverlappingDivsComponentProps> = ({
                         style={{ color: "white" }}
                       />
                     )}
-                    <div className={styles.cardTittle}>{item?.title}</div>
+                    <div className={styles.cardTittle}>
+                      <Link to={`/detail`} state={item}>
+                        {item?.title}
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               );
