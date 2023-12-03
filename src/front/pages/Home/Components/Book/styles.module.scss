@@ -14,16 +14,14 @@
         position: absolute;
         >div{
             flex: 1;
-            padding: 10px;
         }
         .card{
-            width: 400px;
-            height: 280px;
+            width: 30vw;
+            height: 45vh;
             background-color: white;
             position: absolute;
             border-radius: 5px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            padding: 10px;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -31,15 +29,23 @@
             -webkit-box-orient: vertical;                
             
             .cardTittle{
-                font-size: 20px;
+                font-size: 17px;
+                width: 100%;
                 position: absolute;
-                bottom: 10px;
+                bottom: 15px;
+                padding: 2px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
                 -webkit-line-clamp: 1;
                 -webkit-box-orient: vertical;   
                 cursor: pointer; 
+                background-color: rgba(187, 185, 185, 0.3);
+            }
+            .cardSync{
+                position: absolute;
+                top: 5px;
+                right: 5px;
             }
 
             .des{
