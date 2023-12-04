@@ -34,7 +34,7 @@ const Login: React.FC = () => {
   return (
     <div className={styles.loginWrapper}>
       {isLogin ? (
-        <Navigate to="/" />
+        <Navigate to="/data" />
       ) : (
         <div className={styles.loginContainer}>
           <Form

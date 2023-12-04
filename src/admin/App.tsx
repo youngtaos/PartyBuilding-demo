@@ -32,7 +32,7 @@ const App: React.FC = () => {
         </Routes>
       </HashRouter>
       <MyFloatButton />
-      <div style={{ textAlign: "center" }}>
+      {/* <div style={{ textAlign: "center" }}>
         版权所有：重庆科技学院智能技术与工程学院教工第一党支部
         <div>
           <a
@@ -43,7 +43,7 @@ const App: React.FC = () => {
             渝ICP备2023001099号-2
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
