@@ -27,6 +27,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     axios.get("/api/showData").then((res) => {
       const data = res?.data?.data;
+      console.log(data, "data");
       setSchema(data);
     });
   }, []);
@@ -44,9 +45,6 @@ const Home: React.FC = () => {
               <Article schema={schema} />
             </div>
           )}
-          {/* <div className="site-card-border-less-wrapper">
-            <People />
-          </div> */}
         </div>
       </div>
     </div>

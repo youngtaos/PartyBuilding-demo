@@ -12,7 +12,7 @@ interface OverlappingDivsComponentProps {
 }
 
 const OverlappingDivsComponent: React.FC<OverlappingDivsComponentProps> = ({
-  data,
+  data = [],
 }) => {
   const [currentData, setCurrentData] = useState(data);
   const [rotate, setRotate] = useState(0);
@@ -21,11 +21,11 @@ const OverlappingDivsComponent: React.FC<OverlappingDivsComponentProps> = ({
     const firstData = data[0];
     temp.shift();
     temp.push(firstData);
-    setCurrentData(temp.slice(0, 6).reverse());
+    setCurrentData(temp?.slice(0, 6).reverse());
     setRotate(rotate + 90);
   }
   useEffect(() => {
-    setCurrentData(data.slice(0, 6).reverse());
+    data && data.length && setCurrentData(data?.slice(0, 6).reverse());
   }, [data]);
   return (
     <>
@@ -41,7 +41,6 @@ const OverlappingDivsComponent: React.FC<OverlappingDivsComponentProps> = ({
         >
           <div>
             {currentData.map((item, index) => {
-              console.log(index, "index");
               return (
                 <motion.div
                   variants={fadeIn("left", "tween", (index + 1) * 0.2, 1)}
@@ -62,7 +61,7 @@ const OverlappingDivsComponent: React.FC<OverlappingDivsComponentProps> = ({
                       preview={false}
                       fallback=""
                     ></Image>
-                    {index === currentData.length - 1 && (
+                    {index === currentData?.length - 1 && (
                       <SyncOutlined
                         className={styles.cardSync}
                         onClick={nextPage}
