@@ -9,6 +9,7 @@ import styles from "./styles.module.scss";
 import Blank from "./Components/Blank";
 import People from "./Components/People";
 import { Empty } from "antd";
+import Login from "./Components/Login";
 
 const defaultSchema = [
   { content: "", title: "​", imgSrc: "", academy: "", message: "", people: "" },
@@ -24,19 +25,20 @@ interface data {
 
 const Home: React.FC = () => {
   const [schema, setSchema] = useState<data[]>(defaultSchema);
+  const [isLogin, setIsLogin] = useState(true);
   useEffect(() => {
     axios.get("/api/showData").then((res) => {
       const data = res?.data?.data;
-      console.log(data, "data");
       setSchema(data);
     });
   }, []);
   return (
     <div className={styles.HomeWrapper}>
-      <NavBar></NavBar>
+      <NavBar setIsLogin={setIsLogin}></NavBar>
 
       <div>
         <Banner schema={schema}></Banner>
+        {!isLogin ? <Login isLogin={isLogin} setIsLogin={setIsLogin} /> : null}
         <div className={styles.main}>
           {!schema ? (
             <Blank />

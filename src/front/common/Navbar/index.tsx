@@ -1,11 +1,24 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { AppstoreOutlined } from "@ant-design/icons";
 import { FloatButton } from "antd";
-import styles from "./styles.module.scss";
-const handleManagePageRedirect = () => {
-  window.location.href = "/admin.html#/data";
-};
-const NavBar: React.FC = () => {
+import axios from "axios";
+
+interface NavBarProps {
+  setIsLogin: Dispatch<SetStateAction<boolean>>;
+}
+
+const NavBar: React.FC<NavBarProps> = ({ setIsLogin }) => {
+  const handleManagePageRedirect = () => {
+    axios.get("/api/isLogin").then((res) => {
+      const data = res.data.data;
+      if (data) {
+        window.location.href = "/admin.html#/data";
+        setIsLogin(true);
+      } else {
+        setIsLogin(false);
+      }
+    });
+  };
   return (
     <>
       <FloatButton
@@ -13,9 +26,7 @@ const NavBar: React.FC = () => {
         type="primary"
         style={{ left: 24 }}
         icon={<AppstoreOutlined />}
-        onClick={() => {
-          handleManagePageRedirect();
-        }}
+        onClick={handleManagePageRedirect}
         tooltip={"进入管理页面"}
       />
     </>

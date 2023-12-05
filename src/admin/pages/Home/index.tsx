@@ -130,53 +130,52 @@ const Home: React.FC = () => {
       const data = res?.data?.data;
       setIsLogin(data);
     });
+    if (!isLogin) {
+      window.location.href = "/";
+    }
   }, [isLogin]);
   return (
     <div className={styles.HomeWrapper}>
-      {isLogin ? (
-        <Layout>
-          <Sider
-            breakpoint="lg"
-            collapsedWidth="0"
-            className={styles.sider}
-            onBreakpoint={(broken) => {}}
-            onCollapse={(collapsed, type) => {}}
+      <Layout>
+        <Sider
+          breakpoint="lg"
+          collapsedWidth="0"
+          className={styles.sider}
+          onBreakpoint={(broken) => {}}
+          onCollapse={(collapsed, type) => {}}
+        >
+          <div
+            className={styles.title}
+            onClick={() => {
+              handleHomePageRedirect();
+            }}
           >
+            智能党建信息系统
+          </div>
+          <Menu
+            className={styles.menu}
+            theme="dark"
+            mode="inline"
+            items={items}
+            defaultSelectedKeys={[routeType]}
+          />
+        </Sider>
+        <Layout>
+          <Header style={{ padding: 0 }} />
+
+          <Content style={{ margin: "24px 16px 0" }}>
             <div
-              className={styles.title}
-              onClick={() => {
-                handleHomePageRedirect();
+              style={{
+                padding: 24,
+                minHeight: 360,
+                background: colorBgContainer,
               }}
             >
-              智能党建信息系统
+              <Outlet />
             </div>
-            <Menu
-              className={styles.menu}
-              theme="dark"
-              mode="inline"
-              items={items}
-              defaultSelectedKeys={[routeType]}
-            />
-          </Sider>
-          <Layout>
-            <Header style={{ padding: 0 }} />
-
-            <Content style={{ margin: "24px 16px 0" }}>
-              <div
-                style={{
-                  padding: 24,
-                  minHeight: 360,
-                  background: colorBgContainer,
-                }}
-              >
-                <Outlet />
-              </div>
-            </Content>
-          </Layout>
+          </Content>
         </Layout>
-      ) : (
-        <Navigate to="/login" />
-      )}
+      </Layout>
     </div>
   );
 };
