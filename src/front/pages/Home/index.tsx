@@ -1,14 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
 import NavBar from "../../common/Navbar/index";
 import Banner from "./Components/Banner";
 import Article from "./Components/Article";
 import styles from "./styles.module.scss";
 import Blank from "./Components/Blank";
-import People from "./Components/People";
-import { Empty } from "antd";
 import Login from "./Components/Login";
 
 const defaultSchema = [
@@ -35,10 +32,10 @@ const Home: React.FC = () => {
   return (
     <div className={styles.HomeWrapper}>
       <NavBar setIsLogin={setIsLogin}></NavBar>
-
+      {!isLogin ? <Login isLogin={isLogin} setIsLogin={setIsLogin} /> : null}
       <div>
         <Banner schema={schema}></Banner>
-        {!isLogin ? <Login isLogin={isLogin} setIsLogin={setIsLogin} /> : null}
+
         <div className={styles.main}>
           {!schema ? (
             <Blank />

@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import { Button, Form, Input, message } from "antd";
 import axios from "axios";
 import qs from "qs";
-import { Navigate } from "react-router-dom";
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 
 interface LoginProps {
   isLogin: boolean;
@@ -11,6 +11,7 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const onFinish = (values: any) => {
     axios
       .post(
@@ -36,42 +37,55 @@ const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
 
   if (!isLogin) {
     return (
-      <div className={styles.loginContainer}>
+      <div>
         <Form
-          className={styles.login}
+          className={styles.loginContainer}
           name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <Form.Item
-            label={
-              <span style={{ fontSize: 22, fontWeight: "bold" }}>账号</span>
-            }
+            label={<span>账号</span>}
             name="username"
-            rules={[{ required: true, message: "请输入账号" }]}
+            rules={[{ required: true, message: <span>请输入账号</span> }]}
+            style={{ width: "60%" }}
           >
             <Input />
           </Form.Item>
 
           <Form.Item
-            label={
-              <span style={{ fontSize: 22, fontWeight: "bold" }}>密码</span>
-            }
+            label={<span>密码</span>}
             name="password"
-            rules={[{ required: true, message: "请输入密码!" }]}
+            style={{ width: "60%" }}
+            rules={[
+              {
+                required: true,
+                message: <span style={{ color: "blue" }}>请输入密码</span>,
+              },
+            ]}
           >
-            <Input type="password" />
+            <Input.Password
+              type="password"
+              visibilityToggle={{
+                visible: passwordVisible,
+                onVisibleChange: setPasswordVisible,
+              }}
+            />
           </Form.Item>
 
-          <Form.Item wrapperCol={{ offset: 7, span: 16 }}>
+          <Form.Item style={{ width: "50%" }}>
             <Button className={styles.subtn} type="text" htmlType="submit">
               登录
             </Button>
           </Form.Item>
+          <div
+            className={styles.rightBottom}
+            onClick={() => {
+              setIsLogin(true);
+            }}
+          ></div>
         </Form>
       </div>
     );

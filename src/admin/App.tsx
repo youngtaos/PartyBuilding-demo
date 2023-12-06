@@ -32,11 +32,7 @@ const App: React.FC = () => {
         </Routes>
       </HashRouter>
       <MyFloatButton />
-<<<<<<< HEAD
       {/* <div style={{ textAlign: "center" }}>
-=======
-      <div style={{ textAlign: "center" }}>
->>>>>>> 3ceae79b3779c2a79ca124fde092396b315b264c
         版权所有：重庆科技学院智能技术与工程学院教工第一党支部
         <div>
           <a
@@ -47,11 +43,7 @@ const App: React.FC = () => {
             渝ICP备2023001099号-2
           </a>
         </div>
-<<<<<<< HEAD
       </div> */}
-=======
-      </div>
->>>>>>> 3ceae79b3779c2a79ca124fde092396b315b264c
     </div>
   );
 };
