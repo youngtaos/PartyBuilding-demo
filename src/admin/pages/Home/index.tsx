@@ -24,7 +24,8 @@ const handleHomePageRedirect = () => {
 };
 const handleLogout = () => {
   axios.get("/api/logout").then((res) => {
-    console.log(res);
+    console.log(res, "res");
+    window.location.href = "/";
   });
 };
 const { Header, Content, Footer, Sider } = Layout;
@@ -68,14 +69,7 @@ const items = [
     ""
   ),
   getItem(
-    <div
-      onClick={() => {
-        handleLogout();
-        window.location.href = "/";
-      }}
-    >
-      退出登录
-    </div>,
+    <div onClick={handleLogout}>退出登录</div>,
     "/logout",
     <EnterOutlined />,
     ""
