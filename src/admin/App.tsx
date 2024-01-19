@@ -8,6 +8,7 @@ import PeopleManage from "./pages/Home/components/PeopleManage";
 import ArticleManage from "./pages/Home/components/AticleManage";
 import MyEditor from "./pages/Home/components/AticleManage/Editor";
 import MyFloatButton from "./pages/Home/components/MyFoaltButton";
+import SiteSpider from "./pages/Home/components/SiteSpider";
 
 const App: React.FC = () => {
   return (
@@ -16,7 +17,21 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/login" element={<Login />} caseSensitive={true}></Route>
           <Route path="/" element={<Home />} caseSensitive={true}>
-            <Route path="/data" element={<DataPage />} caseSensitive={true} />
+            <Route
+              path="/DataPage"
+              element={<DataPage />}
+              caseSensitive={true}
+            />
+            <Route
+              path="/WeChatSpider"
+              element={<SiteSpider />}
+              caseSensitive={true}
+            />
+            <Route
+              path="/SiteSpider"
+              element={<SiteSpider />}
+              caseSensitive={true}
+            />
             <Route
               path="/people"
               element={<PeopleManage />}

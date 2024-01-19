@@ -12,7 +12,7 @@ const NavBar: React.FC<NavBarProps> = ({ setIsLogin }) => {
     axios.get("/api/isLogin").then((res) => {
       const data = res.data.data;
       if (data) {
-        window.location.href = "/admin.html#/data";
+        window.location.href = "/admin.html#/DataPage";
         setIsLogin(true);
       } else {
         setIsLogin(false);

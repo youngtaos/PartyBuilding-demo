@@ -5,7 +5,11 @@ import PeopleManage from "../components/PeopleManage";
 
 const routes = [
   {
-    path: "/data",
+    path: "/SiteSpider",
+    element: <DataPage />,
+  },
+  {
+    path: "/WeChatSpider",
     element: <DataPage />,
   },
   {

@@ -24,7 +24,7 @@ const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
       )
       .then((res) => {
         if (res.data.data) {
-          window.location.href = "/admin.html#/data";
+          window.location.href = "/admin.html#/DataPage";
         } else {
           message.error(res.data.errMsg);
         }
