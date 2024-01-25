@@ -1,28 +1,51 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Divider, List, Typography } from "antd";
-import { data } from "../..";
+import CountUp from "react-countup";
+import { Card, Col, Row, Statistic } from "antd";
 
-const DataList = () => {
-  const schema = useSelector((state: any) => {
-    return state.homeManagement.schema;
-  });
+const formatter = (value: number) => (
+  <CountUp end={value} separator="," formatter={undefined} />
+);
+
+type DataListProps = {
+  SiteSpiderData: [];
+};
+
+const DataList: React.FC<DataListProps> = ({ SiteSpiderData }) => {
+  console.log(SiteSpiderData, "datalist");
   return (
     <>
-      <List
-        size="small"
-        header="数据"
-        footer={<div style={{ fontWeight: "bold" }}>到底啦</div>}
-        bordered
-        dataSource={schema}
-        renderItem={(item: data) => (
-          <List.Item>
-            <a href={item.articleUrl} target="_blank" rel="noreferrer">
-              {item.title}
-            </a>
-          </List.Item>
-        )}
-      />
+      <Row gutter={16}>
+        <Col span={5}>
+          <Card bordered>
+            <Statistic
+              title="本次爬取相关文章"
+              value={SiteSpiderData.length}
+              valueStyle={{ color: "#3f8600" }}
+              //formatter={formatter}
+            />
+          </Card>
+        </Col>
+        <Col span={5}>
+          <Card>
+            <Statistic
+              title="本次爬取相关人员"
+              value={10}
+              valueStyle={{ color: "#cf1322" }}
+              //formatter={formatter}
+            />
+          </Card>
+        </Col>
+        <Col span={5}>
+          <Card>
+            <Statistic
+              title="本次爬取耗时"
+              value={120}
+              precision={2}
+              //formatter={formatter}
+            />
+          </Card>
+        </Col>
+      </Row>
     </>
   );
 };

@@ -1,7 +1,17 @@
 import { original, produce } from 'immer';
-import { Add_People, CHANGE_PeopleInfo, CHANGE_SCHEMA, Delete_People, Update_People } from './constant';
+import { Add_People, CHANGE_PeopleInfo, CHANGE_SiteSpiderData, CHANGE_SCHEMA, Delete_People, Update_People } from './constant';
 
 const initialSchema = [{
+    "academy": "",
+    "content": "",
+    "id": 0,
+    "imgSrc": "",
+    "message": "",
+    "people": "",
+    "title": "",
+}];
+
+const initialSiteSpiderData = [{
     "academy": "",
     "content": "",
     "id": 0,
@@ -17,13 +27,17 @@ const defaultState = {
         "id": 0,
         "name": "",
         "articleNum": 0
-    }]
+    }],
+    SiteSpiderData: initialSiteSpiderData
 }
 
 export const HomeMangeReducer = (state = defaultState, action: any) => produce(state, (draft) => {
     switch (action.type) {
         case CHANGE_SCHEMA:
             draft.schema = action.value;
+            break;
+        case CHANGE_SiteSpiderData:
+            draft.SiteSpiderData = action.value;
             break;
         case CHANGE_PeopleInfo:
             draft.peopleInfo = action.value;
