@@ -11,15 +11,16 @@ const initialSchema = [{
     "title": "",
 }];
 
-const initialSiteSpiderData = [{
-    "academy": "",
-    "content": "",
-    "id": 0,
-    "imgSrc": "",
-    "message": "",
-    "people": "",
-    "title": "",
-}];
+type SiteSpiderData = {
+    academy: string,
+    content: string,
+    id: number,
+    imgSrc: string,
+    message: string,
+    people: [],
+    title: string,
+}
+const initialSiteSpiderData: SiteSpiderData[] = [];
 
 const defaultState = {
     schema: initialSchema,

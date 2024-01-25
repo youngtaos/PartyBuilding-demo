@@ -1,6 +1,17 @@
 .Wrapper{
     width: auto;
     overflow: hidden;
-   
+    display: flex;
+    flex-direction: column;
     
+    .btnBox{
+        .left{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
 }
