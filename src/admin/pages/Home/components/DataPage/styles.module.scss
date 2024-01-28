@@ -1,11 +1,13 @@
 .Wrapper{
     width: auto;
-    height: 600px;
+    height: 80vh;
     overflow: hidden;
+    box-sizing: border-box;
     .DataContent{
         display: flex;
         justify-content: center;
         align-items: center;
+        //background-color: blue;
         .left{
             flex: 1;
             height: 400px;
@@ -15,8 +17,8 @@
             }    
         }
         .dora{
-            height: 500px;
             flex: 1;
+            height: 500px;
         }
     }
     

@@ -132,16 +132,6 @@ const DataPage: React.FC = () => {
 
   return (
     <div className={styles.Wrapper}>
-      <Button
-        type="primary"
-        onClick={() => {
-          handleGetData();
-        }}
-        style={{ width: 150, height: 50 }}
-      >
-        爬取数据
-      </Button>
-
       <div className={styles.DataContent}>
         <div className={styles.left}>
           <DataList />

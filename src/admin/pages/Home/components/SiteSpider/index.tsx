@@ -92,16 +92,12 @@ const SiteSpider: React.FC = () => {
           }}
           disabled={spinning}
         >
-          {spinning ? (
-            <Space>
-              数据爬取中
-              <Spin spinning={spinning} style={{ color: "red" }} />
-            </Space>
-          ) : (
-            "爬取数据"
-          )}
+          {spinning ? <Space>数据爬取中</Space> : "爬取数据"}
         </Button>
       </div>
+      <Spin spinning={spinning} style={{ color: "red" }}>
+        <div className="content" />
+      </Spin>
       {spinning ? (
         <Skeleton active />
       ) : (

@@ -162,12 +162,21 @@ const Home: React.FC = () => {
         <Layout>
           <Header style={{ padding: 0 }} />
 
-          <Content style={{ margin: "24px 16px 0" }}>
+          <Content
+            style={{
+              margin: "10px 16px 10px 10px",
+            }}
+          >
             <div
               style={{
                 padding: 24,
-                minHeight: 360,
+                height: "85vh",
+                display: "flex",
+                flexDirection: "column",
                 background: colorBgContainer,
+                overflow: "hidden",
+                overflowY: "scroll",
+                boxSizing: "border-box",
               }}
             >
               <Outlet />
