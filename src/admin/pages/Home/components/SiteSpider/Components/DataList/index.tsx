@@ -34,7 +34,7 @@ const DataList: React.FC<DataListProps> = ({ SiteSpiderData, take }) => {
     <Space direction="vertical" size={20}>
       <Row gutter={16}>
         <Col span={5}>
-          <Card bordered>
+          <Card bordered style={{ background: "#F0F2F5" }}>
             <Statistic
               title="爬取相关文章"
               value={SiteSpiderData.length}
@@ -44,7 +44,7 @@ const DataList: React.FC<DataListProps> = ({ SiteSpiderData, take }) => {
           </Card>
         </Col>
         <Col span={5}>
-          <Card>
+          <Card bordered style={{ background: "#F0F2F5" }}>
             <Statistic
               title="爬取相关人员"
               value={people.length}

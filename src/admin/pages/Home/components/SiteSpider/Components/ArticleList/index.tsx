@@ -69,9 +69,9 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
     <div
       id="scrollableDiv"
       style={{
-        height: "320px",
+        height: "300px",
         overflow: "auto",
-        padding: "0 16px",
+        //padding: "0 16px",
         //border: "1px solid rgba(140, 140, 140, 0.35)",
       }}
     >
@@ -88,7 +88,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
           renderItem={(item, index) => (
             <List.Item key={index}>
               <List.Item.Meta
-                avatar={<Avatar src={item.imgSrc} shape="square" />}
+                avatar={<Avatar src={item.imgSrc} />}
                 title={<a href={item.articleUrl}>{item.title}</a>}
                 description={item.people.join(" ")}
               />

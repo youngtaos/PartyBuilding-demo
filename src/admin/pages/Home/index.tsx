@@ -169,8 +169,8 @@ const Home: React.FC = () => {
           >
             <div
               style={{
-                padding: 24,
-                height: "85vh",
+                padding: 20,
+                height: "90vh",
                 display: "flex",
                 flexDirection: "column",
                 background: colorBgContainer,

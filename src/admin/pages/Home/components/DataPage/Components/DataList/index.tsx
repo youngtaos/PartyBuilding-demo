@@ -13,12 +13,9 @@ const DataList = () => {
       <List
         size="small"
         header={
-          <div>
-            <h2 style={{ fontWeight: "bold" }}>数据来源</h2>
-            <span style={{ color: "#999" }}>
-              点击下方链接可以前往对应文章来源地址
-            </span>
-          </div>
+          <span style={{ color: "#999" }}>
+            点击下方链接可以前往对应文章来源地址
+          </span>
         }
         footer={<div style={{ fontWeight: "bold" }}>到底啦</div>}
         bordered

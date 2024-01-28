@@ -63,7 +63,7 @@ const DataPage: React.FC = () => {
     setOption({
       backgroundColor: "white",
       title: {
-        text: "支部成员文章爬取数据",
+        text: "",
         left: "center",
         top: 0,
         textStyle: {
