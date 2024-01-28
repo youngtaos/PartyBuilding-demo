@@ -88,7 +88,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
           renderItem={(item, index) => (
             <List.Item key={index}>
               <List.Item.Meta
-                avatar={<Avatar src={item.imgSrc} />}
+                avatar={<Avatar src={item.imgSrc} shape="square" />}
                 title={<a href={item.articleUrl}>{item.title}</a>}
                 description={item.people.join(" ")}
               />

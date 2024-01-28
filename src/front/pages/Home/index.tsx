@@ -7,6 +7,7 @@ import Article from "./Components/Article";
 import styles from "./styles.module.scss";
 import Blank from "./Components/Blank";
 import Login from "./Components/Login";
+import MaskedComponent from "./Components/Mask";
 
 const defaultSchema = [
   { content: "", title: "​", imgSrc: "", academy: "", message: "", people: "" },
@@ -32,7 +33,13 @@ const Home: React.FC = () => {
   return (
     <div className={styles.HomeWrapper}>
       <NavBar setIsLogin={setIsLogin}></NavBar>
-      {!isLogin ? <Login isLogin={isLogin} setIsLogin={setIsLogin} /> : null}
+      {!isLogin ? (
+        <>
+          <MaskedComponent isLogin={isLogin}>
+            <Login isLogin={isLogin} setIsLogin={setIsLogin} />
+          </MaskedComponent>
+        </>
+      ) : null}
       <div>
         <Banner schema={schema}></Banner>
 
