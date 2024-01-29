@@ -15,7 +15,6 @@ const AvatarCom: React.FC<{ id: number }> = (props) => {
         body,
       });
       const res = await response.json();
-      console.log(res);
     } else {
       alert("请选择文件！");
     }

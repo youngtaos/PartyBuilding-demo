@@ -49,7 +49,6 @@ const DataList: React.FC<DataListProps> = ({ SiteSpiderData, take }) => {
     });
     setPeople(Array.from(new Set(arr)));
     setArticles(ans);
-    console.log(SiteSpiderData, "siteSpiderData");
   }, [SiteSpiderData, param]);
 
   return (

@@ -19,7 +19,6 @@ const handleHomePageRedirect = () => {
 };
 const handleLogout = () => {
   axios.get("/api/logout").then((res) => {
-    console.log(res, "res");
     window.location.href = "/";
   });
 };

@@ -88,7 +88,6 @@ const SiteSpider: React.FC = () => {
   useEffect(() => {
     if (isFirst && schema.length !== 0) {
       changeSiteSpiderData(schema);
-      console.log(schema, "schema");
       isFirst.current = false;
     }
   }, [schema]);

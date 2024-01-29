@@ -78,7 +78,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
       <InfiniteScroll
         dataLength={data.length}
         next={loadMoreData}
-        hasMore={data.length < 1}
+        hasMore={data.length < 0}
         loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
         endMessage={<Divider plain>没有更多了 🤐</Divider>}
         scrollableTarget="scrollableDiv"

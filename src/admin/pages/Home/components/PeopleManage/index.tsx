@@ -58,7 +58,6 @@ const PeopleManage: React.FC = () => {
   };
 
   const handleAddPeople = (people: PeopleInfoType) => {
-    console.log("p", people);
     axios
       .post(
         "/api/people/addPeople",
