@@ -12,16 +12,27 @@ const DataList: React.FC<DataListProps> = ({ SiteSpiderData, take }) => {
   const [people, setPeople] = useState([]);
   const [articles, setArticles] = useState([]);
   useEffect(() => {
-    const arr: any = [];
+    let arr: any = [];
     const ans: any = [];
     SiteSpiderData.forEach((it: any, index) => {
-      arr.push(...it.people);
+      console.log(it.people, "people");
+
+      let people = it.people;
+      if (typeof it.people === "string") {
+        people = JSON.parse(it.people);
+        arr = [...arr, ...people];
+      } else {
+        console.log(people, "111");
+        arr = [...arr, ...people];
+      }
+
+      console.log(arr, "yts");
       ans.push({
         articleUrl: it.articleUrl,
         content: it.content,
         imgSrc: it.imgSrc,
         message: it.message,
-        people: it.people,
+        people,
         title: it.title,
       });
     });

@@ -38,6 +38,7 @@ const People: React.FC<PeopleProps> = ({ name }) => {
       });
   };
   useEffect(() => {
+    console.log(name, "gggg");
     handleGetPeopleInfoByName(name);
   }, [name]);
   return (
