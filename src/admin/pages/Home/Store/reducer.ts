@@ -1,15 +1,15 @@
 import { original, produce } from 'immer';
 import { Add_People, CHANGE_PeopleInfo, CHANGE_SiteSpiderData, CHANGE_SCHEMA, Delete_People, Update_People } from './constant';
 
-const initialSchema = [{
-    "academy": "",
-    "content": "",
-    "id": 0,
-    "imgSrc": "",
-    "message": "",
-    "people": "",
-    "title": "",
-}];
+type schemaType = {
+    academy: string,
+    content: string,
+    id: number,
+    imgSrc: string,
+    message: string,
+    people: [],
+    title: string,
+}
 
 type SiteSpiderData = {
     academy: string,
@@ -21,7 +21,7 @@ type SiteSpiderData = {
     title: string,
 }
 const initialSiteSpiderData: SiteSpiderData[] = [];
-
+const initialSchema: schemaType[] = [];
 const defaultState = {
     schema: initialSchema,
     peopleInfo: [{

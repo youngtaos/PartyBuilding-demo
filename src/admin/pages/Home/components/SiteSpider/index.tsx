@@ -1,7 +1,7 @@
 import { Button, Skeleton, Space, Spin, notification } from "antd";
 import styles from "./styles.module.scss";
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import qs from "qs";
 import DataList from "./Components/DataList";
@@ -26,9 +26,14 @@ const SiteSpider: React.FC = () => {
   const [startTime, setStartTime] = useState<Date>();
   const take = useRef(0);
   const [api, contextHolder] = notification.useNotification();
+  const isFirst = useRef(true);
   let names: Array<string> = [];
   const peopleInfo = useSelector((state: any) => {
     return state.homeManagement.peopleInfo;
+  });
+
+  const schema = useSelector((state: any) => {
+    return state.homeManagement.schema;
   });
 
   const SiteSpiderData = useSelector((state: any) => {
@@ -61,7 +66,6 @@ const SiteSpider: React.FC = () => {
   };
 
   const handleGetData = () => {
-    console.log(peopleInfo);
     peopleInfo.forEach((item: any) => {
       names.push(`${item.name}`);
     });
@@ -80,6 +84,13 @@ const SiteSpider: React.FC = () => {
       });
   };
 
+  useEffect(() => {
+    if (isFirst && schema.length !== 0) {
+      changeSiteSpiderData(schema);
+      console.log(schema, "schema");
+      isFirst.current = false;
+    }
+  }, [schema]);
   return (
     <div className={styles.Wrapper}>
       {contextHolder}

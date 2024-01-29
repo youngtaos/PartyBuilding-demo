@@ -85,16 +85,22 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
       >
         <List
           dataSource={articles}
-          renderItem={(item, index) => (
-            <List.Item key={index}>
-              <List.Item.Meta
-                avatar={<Avatar src={item.imgSrc} />}
-                title={<a href={item.articleUrl}>{item.title}</a>}
-                description={item.people.join(" ")}
-              />
-              {/* <div>{item.title}</div> */}
-            </List.Item>
-          )}
+          renderItem={(item, index) => {
+            let people = item.people;
+            if (typeof item.people === "string") {
+              people = JSON.parse(item.people);
+            }
+            return (
+              <List.Item key={index}>
+                <List.Item.Meta
+                  avatar={<Avatar src={item.imgSrc} />}
+                  title={<a href={item.articleUrl}>{item.title}</a>}
+                  description={people.join(" ")}
+                />
+                {/* <div>{item.title}</div> */}
+              </List.Item>
+            );
+          }}
         />
       </InfiniteScroll>
     </div>
