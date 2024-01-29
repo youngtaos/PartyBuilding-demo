@@ -6,6 +6,7 @@ import { UserOutlined } from "@ant-design/icons";
 
 type PeopleProps = {
   name: string;
+  setParam: React.Dispatch<React.SetStateAction<string>>;
 };
 
 type PeopleInfoType = {
@@ -16,7 +17,7 @@ type PeopleInfoType = {
   posts: number;
 };
 
-const People: React.FC<PeopleProps> = ({ name }) => {
+const People: React.FC<PeopleProps> = ({ name, setParam }) => {
   const [peopleInfo, setPeopleInfo] = useState<PeopleInfoType>({
     articleNum: 0,
     avatar: "",
@@ -37,8 +38,10 @@ const People: React.FC<PeopleProps> = ({ name }) => {
         setPeopleInfo(res.data.data[0]);
       });
   };
+  const selectPeople = (name: string) => {
+    setParam(name);
+  };
   useEffect(() => {
-    console.log(name, "gggg");
     handleGetPeopleInfoByName(name);
   }, [name]);
   return (
@@ -49,11 +52,20 @@ const People: React.FC<PeopleProps> = ({ name }) => {
             shape="square"
             icon={<UserOutlined />}
             src={peopleInfo.avatar}
+            onClick={() => {
+              setParam(peopleInfo.name);
+            }}
           />
         </Badge>
       ) : (
         <Badge count={peopleInfo?.articleNum}>
-          <Avatar shape="square" icon={<UserOutlined />} />
+          <Avatar
+            shape="square"
+            icon={<UserOutlined />}
+            onClick={() => {
+              setParam(peopleInfo.name);
+            }}
+          />
         </Badge>
       )}
     </>

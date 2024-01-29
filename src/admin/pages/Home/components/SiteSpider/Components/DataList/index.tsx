@@ -11,6 +11,7 @@ type DataListProps = {
 const DataList: React.FC<DataListProps> = ({ SiteSpiderData, take }) => {
   const [people, setPeople] = useState([]);
   const [articles, setArticles] = useState([]);
+  const [param, setParam] = useState("");
   useEffect(() => {
     let arr: any = [];
     const ans: any = [];
@@ -22,24 +23,34 @@ const DataList: React.FC<DataListProps> = ({ SiteSpiderData, take }) => {
         people = JSON.parse(it.people);
         arr = [...arr, ...people];
       } else {
-        console.log(people, "111");
         arr = [...arr, ...people];
       }
-
-      console.log(arr, "yts");
-      ans.push({
-        articleUrl: it.articleUrl,
-        content: it.content,
-        imgSrc: it.imgSrc,
-        message: it.message,
-        people,
-        title: it.title,
-      });
+      if (param === "") {
+        ans.push({
+          articleUrl: it.articleUrl,
+          content: it.content,
+          imgSrc: it.imgSrc,
+          message: it.message,
+          people,
+          title: it.title,
+        });
+      } else {
+        if (param !== "" && people.indexOf(param) !== -1) {
+          ans.push({
+            articleUrl: it.articleUrl,
+            content: it.content,
+            imgSrc: it.imgSrc,
+            message: it.message,
+            people,
+            title: it.title,
+          });
+        }
+      }
     });
     setPeople(Array.from(new Set(arr)));
     setArticles(ans);
     console.log(SiteSpiderData, "siteSpiderData");
-  }, [SiteSpiderData]);
+  }, [SiteSpiderData, param]);
 
   return (
     <Space direction="vertical" size={20}>
@@ -65,9 +76,9 @@ const DataList: React.FC<DataListProps> = ({ SiteSpiderData, take }) => {
           </Card>
         </Col>
       </Row>
-      <Space size={[24, 16]} wrap>
+      <Space size={[24, 16]} wrap={false}>
         {people.map((it, index) => {
-          return <People key={index} name={it}></People>;
+          return <People key={index} name={it} setParam={setParam}></People>;
         })}
       </Space>
       <ArticleList articles={articles}></ArticleList>

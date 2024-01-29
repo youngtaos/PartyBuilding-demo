@@ -24,9 +24,10 @@ const SiteSpider: React.FC = () => {
   const [spinning, setSpinning] = useState(false);
   const [lastSpiderTime, setSpiderTime] = useState("");
   const [startTime, setStartTime] = useState<Date>();
-  const take = useRef(0);
+
   const [api, contextHolder] = notification.useNotification();
   const isFirst = useRef(true);
+  const take = useRef(0);
   let names: Array<string> = [];
   const peopleInfo = useSelector((state: any) => {
     return state.homeManagement.peopleInfo;
