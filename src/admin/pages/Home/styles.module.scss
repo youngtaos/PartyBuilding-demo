@@ -4,8 +4,7 @@
     .sider{
        height: 100vh;
        overflow: hidden;
-        .title{
-            
+        .title{  
             height: 60px;
             color: white;
             line-height: 60px;
@@ -16,6 +15,7 @@
             display: flex;
             flex-direction: column;
             padding-top: 40px;
+            justify-content: center;
         }
     }
 }

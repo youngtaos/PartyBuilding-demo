@@ -4,16 +4,16 @@ import Login from "../Login";
 
 interface MaskedComponentProps {
   children?: React.ReactNode;
-  isLogin: boolean;
+  isMask: boolean;
 }
 
 const MaskedComponent: React.FC<MaskedComponentProps> = ({
   children,
-  isLogin,
+  isMask,
 }) => {
   return (
-    <div>
-      <div className={`mask ${!isLogin ? "visible" : ""}`}>{children}</div>
+    <div className={`mask ${!isMask ? "visible" : ""}`}>
+      <div className="slider">{children}</div>
     </div>
   );
 };

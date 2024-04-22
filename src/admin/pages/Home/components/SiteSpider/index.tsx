@@ -22,7 +22,9 @@ const Context = React.createContext({ name: "网站" });
 
 const SiteSpider: React.FC = () => {
   const [spinning, setSpinning] = useState(false);
-  const [lastSpiderTime, setSpiderTime] = useState("");
+  const [lastSpiderTime, setLastSpiderTime] = useState(
+    JSON.parse(localStorage.getItem("siteLastSpiderTime") || JSON.stringify(""))
+  );
   const [startTime, setStartTime] = useState<Date>();
 
   const [api, contextHolder] = notification.useNotification();
@@ -78,7 +80,10 @@ const SiteSpider: React.FC = () => {
       })
       .then((res) => {
         setSpinning(false);
-        setSpiderTime(getModeTime());
+        localStorage.setItem(
+          "siteLastSpiderTime",
+          JSON.stringify(getModeTime() || "")
+        );
 
         changeSiteSpiderData(res.data.data);
         openNotification("topRight");
@@ -90,7 +95,15 @@ const SiteSpider: React.FC = () => {
       changeSiteSpiderData(schema);
       isFirst.current = false;
     }
-  }, [schema]);
+  }, [schema, isFirst]);
+
+  useEffect(() => {
+    setLastSpiderTime(
+      JSON.parse(
+        localStorage.getItem("siteLastSpiderTime") || JSON.stringify("")
+      )
+    );
+  }, []);
   return (
     <div className={styles.Wrapper}>
       {contextHolder}

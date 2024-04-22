@@ -45,9 +45,9 @@ const People: React.FC<PeopleProps> = ({ name, setParam }) => {
     handleGetPeopleInfoByName(name);
   }, [name]);
   return (
-    <>
+    <div style={{ cursor: "pointer" }}>
       {peopleInfo?.avatar ? (
-        <Badge count={peopleInfo?.articleNum}>
+        <Badge count={peopleInfo?.articleNum} size="small">
           <Avatar
             shape="square"
             icon={<UserOutlined />}
@@ -58,7 +58,7 @@ const People: React.FC<PeopleProps> = ({ name, setParam }) => {
           />
         </Badge>
       ) : (
-        <Badge count={peopleInfo?.articleNum}>
+        <Badge count={peopleInfo?.articleNum} size="small">
           <Avatar
             shape="square"
             icon={<UserOutlined />}
@@ -68,7 +68,7 @@ const People: React.FC<PeopleProps> = ({ name, setParam }) => {
           />
         </Badge>
       )}
-    </>
+    </div>
   );
 };
 

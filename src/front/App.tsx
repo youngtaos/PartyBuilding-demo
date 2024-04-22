@@ -20,7 +20,7 @@ const App: React.FC = () => {
       </HashRouter>
       <div className={styles.footer}>
         <div className={styles.one}>
-          版权所有：重庆科技学院智能技术与工程学院教工第一党支部
+          版权所有：重庆科技大学智能技术与工程学院教工第一党支部
         </div>
         <div className={styles.two}>
           <a

@@ -35,7 +35,7 @@ const Home: React.FC = () => {
       <NavBar setIsLogin={setIsLogin}></NavBar>
       {!isLogin ? (
         <>
-          <MaskedComponent isLogin={isLogin}>
+          <MaskedComponent isMask={isLogin}>
             <Login isLogin={isLogin} setIsLogin={setIsLogin} />
           </MaskedComponent>
         </>

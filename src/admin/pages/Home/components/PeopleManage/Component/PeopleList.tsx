@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Avatar, List, Modal, Input, Select } from "antd";
+import { Avatar, List, Modal, Input, Select, Card } from "antd";
 import { useDispatch } from "react-redux";
 import qs from "qs";
 import { cloneDeep } from "lodash";
@@ -8,7 +8,14 @@ import { DeletePeopleAcion, updatePeopleAction } from "../../../Store/action";
 import { PeopleInfoType } from "..";
 import styles from "../styles.module.scss";
 import InfoModal from "./infoModal";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  ExclamationCircleOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import Meta from "antd/es/card/Meta";
+import Item from "antd/es/list/Item";
 
 interface PropsType {
   peopleInfo: Array<PeopleInfoType>;
@@ -127,39 +134,85 @@ const PeopleList = (props: PropsType) => {
   };
   return (
     <div className={styles.list}>
-      <List
-        itemLayout="horizontal"
-        dataSource={peopleInfo}
-        renderItem={(item: PeopleInfoType, index: number) => (
-          <List.Item
-            actions={[
-              <a
-                key="list-loadmore-edit"
-                onClick={() => {
-                  openModal(item, index);
+      <div className={styles.postsList}>
+        {peopleInfo
+          .filter((item) => item.posts !== 0)
+          .map((people: PeopleInfoType, index: number) => {
+            return (
+              <Card
+                style={{
+                  width: 200,
+                  margin: 10,
                 }}
+                size={"small"}
+                hoverable={true}
+                cover={<img alt="example" src={people.avatar} height={160} />}
+                actions={[
+                  <EditOutlined
+                    key="edit"
+                    onClick={() => {
+                      openModal(people, index);
+                    }}
+                  />,
+                  <SettingOutlined
+                    key="setting"
+                    onClick={() => {
+                      confirm(index, people.id);
+                      // handleDeletePeople(index, item.id);
+                    }}
+                  />,
+                  <EllipsisOutlined key="ellipsis" />,
+                ]}
               >
-                编辑
-              </a>,
-              <a
-                key="list-loadmore-more"
-                onClick={() => {
-                  confirm(index, item.id);
-                  // handleDeletePeople(index, item.id);
+                <Meta
+                  avatar={<Avatar src={people.avatar} />}
+                  title={<div style={{ color: "red" }}>{people.name}</div>}
+                  description={postsName[people.posts]}
+                />
+              </Card>
+            );
+          })}
+      </div>
+      <div className={styles.postsList}>
+        {peopleInfo
+          .filter((item) => item.posts === 0)
+          .map((people: PeopleInfoType, index: number) => {
+            return (
+              <Card
+                style={{
+                  width: 200,
+                  margin: 10,
+                  flexShrink: 0,
                 }}
+                size={"small"}
+                hoverable={true}
+                cover={<img alt="example" src={people.avatar} height={160} />}
+                actions={[
+                  <EditOutlined
+                    key="edit"
+                    onClick={() => {
+                      openModal(people, index);
+                    }}
+                  />,
+                  <SettingOutlined
+                    key="setting"
+                    onClick={() => {
+                      confirm(index, people.id);
+                      // handleDeletePeople(index, item.id);
+                    }}
+                  />,
+                  <EllipsisOutlined key="ellipsis" />,
+                ]}
               >
-                移除
-              </a>,
-            ]}
-          >
-            <List.Item.Meta
-              avatar={<Avatar src={item.avatar} size={60} />}
-              title={item.name}
-              description={postsName[item.posts]}
-            />
-          </List.Item>
-        )}
-      />
+                <Meta
+                  avatar={<Avatar src={people.avatar} />}
+                  title={<div style={{ color: "red" }}>{people.name}</div>}
+                  description={postsName[people.posts]}
+                />
+              </Card>
+            );
+          })}
+      </div>
       {contextHolder}
       <InfoModal
         ModalData={ModalData}

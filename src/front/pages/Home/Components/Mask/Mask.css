@@ -12,4 +12,26 @@
   .mask.visible {
     display: block;
   }
-  
+
+.slider{
+  position: fixed;
+  top: -500px; /* 初始位置在页面顶部之外 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 100px;
+  background-color: blue;
+  color: white;
+  text-align: center;
+  line-height: 100px;
+  animation: slideFromTop 0.5s ease-in-out forwards; /* 使用动画效果 */
+}
+
+@keyframes slideFromTop {
+  0% {
+    top: -500px; /* 初始位置在页面顶部之外 */
+  }
+  100% {
+    top: calc(50% - 50px);
+  }
+}

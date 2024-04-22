@@ -1,0 +1,7 @@
+.scrollableDiv{
+    height: 300px;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}

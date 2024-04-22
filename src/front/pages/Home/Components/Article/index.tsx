@@ -67,7 +67,7 @@ const Article: React.FC<{
     <div className={styles.Wrapper}>
       <div className={styles.ContentWrapper}>
         <Card
-          title="重庆科技学院智能技术与工程学院教工第一党支部"
+          title="重庆科技大学智能技术与工程学院教工第一党支部"
           bordered={false}
         >
           {list}

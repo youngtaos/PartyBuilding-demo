@@ -48,7 +48,7 @@ const App: React.FC = () => {
       </HashRouter>
       <MyFloatButton />
       {/* <div style={{ textAlign: "center" }}>
-        版权所有：重庆科技学院智能技术与工程学院教工第一党支部
+        版权所有：重庆科技大学智能技术与工程学院教工第一党支部
         <div>
           <a
             href="https://beian.miit.goc.cn/"

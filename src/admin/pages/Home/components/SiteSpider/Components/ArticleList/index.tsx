@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Avatar, Divider, List, Skeleton } from "antd";
+import styles from "./styles.module.scss";
 type ArticleListProps = {
   articles: any[];
 };
@@ -66,15 +67,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
   }
 
   return (
-    <div
-      id="scrollableDiv"
-      style={{
-        height: "300px",
-        overflow: "auto",
-        //padding: "0 16px",
-        //border: "1px solid rgba(140, 140, 140, 0.35)",
-      }}
-    >
+    <div id="scrollableDiv" className={styles.scrollableDiv}>
       <InfiniteScroll
         dataLength={data.length}
         next={loadMoreData}

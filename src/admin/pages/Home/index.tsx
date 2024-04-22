@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink as Link, Outlet, useLocation } from "react-router-dom";
-import { Layout, Menu, theme } from "antd";
+import { Layout, Menu, Skeleton, theme } from "antd";
 import {
   AppstoreOutlined,
   EnterOutlined,
@@ -55,7 +55,7 @@ const items = [
     ),
   ]),
   getItem(
-    <Link to="/people">支部人员管理</Link>,
+    <Link to="/people">支部人员</Link>,
     "/people",
     <UserOutlined />,
     ""
@@ -72,7 +72,7 @@ const items = [
         handleHomePageRedirect();
       }}
     >
-      进入前台页面
+      前台页面
     </div>,
     "/front",
     <AppstoreOutlined />,
@@ -141,15 +141,19 @@ const Home: React.FC = () => {
   return (
     <div className={styles.HomeWrapper}>
       <Layout>
-        <Sider breakpoint="lg" collapsedWidth="0" className={styles.sider}>
-          <div
+        <Sider
+          breakpoint="lg"
+          collapsedWidth="0"
+          className={styles.sider}
+        >
+          {/* <div
             className={styles.title}
             onClick={() => {
               handleHomePageRedirect();
             }}
           >
-            智能党建信息系统
-          </div>
+            数据挖掘及成稿系统
+          </div> */}
           <Menu
             className={styles.menu}
             theme="dark"

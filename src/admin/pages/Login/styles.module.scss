@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: slideIn 10s ease forwards;
     .loginContainer{
         display: flex;
         flex-direction: column;
@@ -30,4 +31,16 @@
             font-weight: 800;
         }
     }
+}
+
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
