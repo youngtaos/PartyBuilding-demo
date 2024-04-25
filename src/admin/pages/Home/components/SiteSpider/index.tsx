@@ -108,15 +108,16 @@ const SiteSpider: React.FC = () => {
     <div className={styles.Wrapper}>
       {contextHolder}
       <div className={styles.btnBox}>
-        <div className={styles.left}>上次爬取时间：{lastSpiderTime}</div>
+        <div className={styles.left}>爬取网站信息</div>
         <Button
           type="primary"
+          style={{ background: "red", color: "white" }}
           onClick={() => {
             handleGetData();
           }}
           disabled={spinning}
         >
-          {spinning ? <Space>数据爬取中</Space> : "爬取数据"}
+          {spinning ? <Space>爬取中</Space> : "爬取"}
         </Button>
       </div>
       <Spin spinning={spinning} style={{ color: "red" }}>
@@ -128,6 +129,7 @@ const SiteSpider: React.FC = () => {
         <DataList
           SiteSpiderData={SiteSpiderData}
           take={take.current}
+          lastSpiderTime={lastSpiderTime}
         ></DataList>
       )}
     </div>

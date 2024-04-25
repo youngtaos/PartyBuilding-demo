@@ -6,9 +6,14 @@ import ArticleList from "../ArticleList";
 type DataListProps = {
   SiteSpiderData: [];
   take: number;
+  lastSpiderTime: string;
 };
 
-const DataList: React.FC<DataListProps> = ({ SiteSpiderData, take }) => {
+const DataList: React.FC<DataListProps> = ({
+  SiteSpiderData,
+  take,
+  lastSpiderTime,
+}) => {
   const [people, setPeople] = useState([]);
   const [articles, setArticles] = useState([]);
   const [param, setParam] = useState("");
@@ -55,21 +60,31 @@ const DataList: React.FC<DataListProps> = ({ SiteSpiderData, take }) => {
     <Space direction="vertical" size={20}>
       <Row gutter={16}>
         <Col span={5}>
-          <Card bordered style={{ background: "#F0F2F5" }}>
+          <Card bordered style={{ background: "#C30D23" }}>
             <Statistic
-              title="爬取相关文章"
+              title={<div style={{ color: "whitesmoke" }}>相关文章</div>}
               value={SiteSpiderData.length}
-              valueStyle={{ color: "#3f8600" }}
+              valueStyle={{ color: "whitesmoke", fontSize: "19px" }}
               //formatter={formatter}
             />
           </Card>
         </Col>
         <Col span={5}>
-          <Card bordered style={{ background: "#F0F2F5" }}>
+          <Card bordered style={{ background: "#C30D23" }}>
             <Statistic
-              title="爬取相关人员"
+              title={<div style={{ color: "whitesmoke" }}>相关人员</div>}
               value={people.length}
-              valueStyle={{ color: "#cf1322" }}
+              valueStyle={{ color: "whitesmoke", fontSize: "19px" }}
+              //formatter={formatter}
+            />
+          </Card>
+        </Col>
+        <Col span={6}>
+          <Card bordered style={{ background: "#C30D23" }}>
+            <Statistic
+              title={<div style={{ color: "whitesmoke" }}>最近爬取</div>}
+              value={lastSpiderTime}
+              valueStyle={{ color: "whitesmoke", fontSize: "19px" }}
               //formatter={formatter}
             />
           </Card>

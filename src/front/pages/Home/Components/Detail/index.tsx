@@ -37,19 +37,19 @@ const Detail: React.FC = (props) => {
                 window.print();
               }}
             >
+              <FilePdfOutlined />
+              打印
+            </div>
+            <div style={{ cursor: "pointer" }}>
               <Popover
                 overlayInnerStyle={{ padding: 0 }}
                 content={<QRCode value="https://ant.design" bordered={false} />}
               >
                 <Space style={{ cursor: "pointer" }}>
-                  <FilePdfOutlined />
-                  打印
+                  <ShareAltOutlined />
+                  分享
                 </Space>
               </Popover>
-            </div>
-            <div style={{ cursor: "pointer" }}>
-              <ShareAltOutlined />
-              分享
             </div>
           </Space>
         </div>

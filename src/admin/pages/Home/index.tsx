@@ -2,10 +2,12 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink as Link, Outlet, useLocation } from "react-router-dom";
-import { Layout, Menu, Skeleton, theme } from "antd";
+import { Breadcrumb, Button, Layout, Menu, Skeleton, theme } from "antd";
 import {
   AppstoreOutlined,
   EnterOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
   PieChartOutlined,
   SnippetsOutlined,
   UserOutlined,
@@ -54,12 +56,7 @@ const items = [
       <PieChartOutlined />
     ),
   ]),
-  getItem(
-    <Link to="/people">支部人员</Link>,
-    "/people",
-    <UserOutlined />,
-    ""
-  ),
+  getItem(<Link to="/people">支部人员</Link>, "/people", <UserOutlined />, ""),
   getItem(
     <Link to="/article">文章编辑</Link>,
     "/article",
@@ -109,8 +106,9 @@ const Home: React.FC = () => {
   const { changeSchema, changePeopleInfo } = useStore();
   const [isLogin, setIsLogin] = useState(true);
   const routeType = useRouteType();
+  const [collapsed, setCollapsed] = useState(false);
   const {
-    token: { colorBgContainer },
+    token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   useEffect(() => {
     axios.get("/api/showData").then((res) => {
@@ -145,7 +143,11 @@ const Home: React.FC = () => {
           breakpoint="lg"
           collapsedWidth="0"
           className={styles.sider}
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
         >
+          <div className="demo-logo-vertical" />
           {/* <div
             className={styles.title}
             onClick={() => {
@@ -163,7 +165,18 @@ const Home: React.FC = () => {
           />
         </Sider>
         <Layout>
-          <Header style={{ padding: 0 }} />
+          <Header style={{ padding: 0, background: colorBgContainer }}>
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: "16px",
+                width: 64,
+                height: 64,
+              }}
+            />
+          </Header>
 
           <Content
             style={{
