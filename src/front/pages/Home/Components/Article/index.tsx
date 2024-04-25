@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import { Image, Card } from "antd";
+import { Image, Card, Empty } from "antd";
 import { Link } from "react-router-dom";
 import { Pagination } from "antd";
 import type { PaginationProps } from "antd";
@@ -65,23 +65,29 @@ const Article: React.FC<{
 
   return (
     <div className={styles.Wrapper}>
-      <div className={styles.ContentWrapper}>
-        <Card
-          title="重庆科技大学智能技术与工程学院教工第一党支部"
-          bordered={false}
-        >
-          {list}
-        </Card>
-      </div>
-      <div className={styles.bottom}>
-        <Pagination
-          current={current}
-          onChange={onChange}
-          total={schema.length}
-          pageSize={3}
-          showSizeChanger={false}
-        />
-      </div>
+      {list.length === 0 ? (
+        <Empty />
+      ) : (
+        <>
+          <div className={styles.ContentWrapper}>
+            <Card
+              // title="重庆科技大学智能技术与工程学院教工第一党支部"
+              bordered={false}
+            >
+              {list}
+            </Card>
+          </div>
+          <div className={styles.bottom}>
+            <Pagination
+              current={current}
+              onChange={onChange}
+              total={schema.length}
+              pageSize={3}
+              showSizeChanger={false}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };

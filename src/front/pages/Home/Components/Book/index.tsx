@@ -27,6 +27,7 @@ const OverlappingDivsComponent: React.FC<OverlappingDivsComponentProps> = ({
   useEffect(() => {
     data && data.length && setCurrentData(data?.slice(0, 6).reverse());
   }, [data]);
+
   return (
     <>
       <motion.div

@@ -112,6 +112,7 @@ const PeopleList = (props: PropsType) => {
       )
       .then(() => {
         updatePeople(index, value);
+        window.location.reload();
       });
   };
 

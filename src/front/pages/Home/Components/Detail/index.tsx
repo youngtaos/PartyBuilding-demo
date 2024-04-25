@@ -1,10 +1,15 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./styles.module.scss";
-import { Image, Card } from "antd";
-import { LeftSquareOutlined } from "@ant-design/icons";
+import { Image, Card, Space, Popover, QRCode } from "antd";
+import {
+  FilePdfOutlined,
+  LeftSquareOutlined,
+  ShareAltOutlined,
+} from "@ant-design/icons";
 import banner1 from "../../../../static/img/banner1.jpg";
 import { stat } from "fs";
+import HighlightKeywords from "./HighlightKeywords";
 
 interface data {
   title: string;
@@ -15,31 +20,45 @@ interface data {
   people: Array<string>;
 }
 
-const goBack = () => {
-  window.history.go(-1);
-};
 const Detail: React.FC = (props) => {
   // content, title, imgSrc, academy, message, people
   const { state } = useLocation();
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.topIcon} onClick={goBack}>
-        <LeftSquareOutlined />
-      </div>
-      {state.imgSrc.includes("undefined") ? (
-        <div className={styles.bkImg}>
-          <img src={banner1}></img>
-        </div>
-      ) : (
-        <div className={styles.bkImg}>
-          <img src={state.imgSrc}></img>
-        </div>
-      )}
-
       <div className={styles.main}>
-        <h2>{state.title}</h2>
-
+        <div className={styles.title}>{state.title}</div>
+        <div className={styles.info}>
+          <div>重庆科技大学智能技术与工程学院教工第一党支部</div>
+          <Space>
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                window.print();
+              }}
+            >
+              <Popover
+                overlayInnerStyle={{ padding: 0 }}
+                content={<QRCode value="https://ant.design" bordered={false} />}
+              >
+                <Space style={{ cursor: "pointer" }}>
+                  <FilePdfOutlined />
+                  打印
+                </Space>
+              </Popover>
+            </div>
+            <div style={{ cursor: "pointer" }}>
+              <ShareAltOutlined />
+              分享
+            </div>
+          </Space>
+        </div>
+        <div className={styles.content}>
+          <HighlightKeywords
+            text={state.content}
+            keywords={JSON.parse(state.people)}
+          />
+        </div>
         {state.imgSrc.includes("undefined") ? (
           <div className={styles.imgBox}>
             <Image
@@ -59,13 +78,14 @@ const Detail: React.FC = (props) => {
             ></Image>
           </div>
         )}
-
-        <div className={styles.content}>{state.content}</div>
         <div className={styles.message}>
-          {state.message} 相关成员：
-          {JSON.parse(state.people).map((pe: string, index: number) => {
-            return <span style={{ color: "red", marginRight: 5 }}>{pe}</span>;
-          })}
+          <div>{state.message} </div>
+          <div>
+            相关成员：
+            {JSON.parse(state.people).map((pe: string, index: number) => {
+              return <span style={{ color: "red", marginRight: 5 }}>{pe}</span>;
+            })}
+          </div>
         </div>
       </div>
     </div>
