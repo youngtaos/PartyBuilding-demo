@@ -9,7 +9,7 @@
         align-items: center;
         //background-color: blue;
         .left{
-            flex: 1;
+            flex: 2;
             height: 500px;
             overflow: scroll;
             &::-webkit-scrollbar{
@@ -18,7 +18,7 @@
         }
         .dora{
             flex: 1;
-            height: 500px;
+            height: 400px;
         }
     }
     

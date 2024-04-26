@@ -1,0 +1,45 @@
+.wrapper{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    .header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        .sumBox{
+            background-color: #f0eeee;
+            color: rgb(33, 129, 219);
+            padding: 8px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+    }
+    .siftWrapper{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 40px;
+        .item{
+            
+            margin: 8px;
+            margin-right: 20px;
+            margin-left: 20px;
+            .inputWrapper{
+                width: 260px;
+            }
+        }
+    }
+    .tableWrapper{
+        display: flex;
+        flex-direction: column;
+        .pagination{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin: 10px;
+        }
+    }
+}

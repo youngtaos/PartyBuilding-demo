@@ -13,6 +13,11 @@ const routes = [
     element: <DataPage />,
   },
   {
+    path: "/spiderSetting",
+    element: <DataPage />,
+  },
+
+  {
     path: "/people",
     element: <PeopleManage />,
   },
@@ -21,7 +26,11 @@ const routes = [
     element: <Navigate to="/" />,
   },
   {
-    path: "/article",
+    path: "/onlineArticle",
+    element: <ArticleManage />,
+  },
+  {
+    path: "/yourArticle",
     element: <ArticleManage />,
   },
 ];

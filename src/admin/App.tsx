@@ -9,6 +9,7 @@ import ArticleManage from "./pages/Home/components/AticleManage";
 import MyEditor from "./pages/Home/components/AticleManage/Editor";
 import MyFloatButton from "./pages/Home/components/MyFoaltButton";
 import SiteSpider from "./pages/Home/components/SiteSpider";
+import SpiderSetting from "./pages/Home/components/SpiderSetting";
 
 const App: React.FC = () => {
   return (
@@ -33,12 +34,22 @@ const App: React.FC = () => {
               caseSensitive={true}
             />
             <Route
+              path="/spiderSetting"
+              element={<SpiderSetting />}
+              caseSensitive={true}
+            />
+            <Route
               path="/people"
               element={<PeopleManage />}
               caseSensitive={true}
             />
             <Route
-              path="/article"
+              path="/onlineArticle"
+              element={<ArticleManage />}
+              caseSensitive={true}
+            />
+            <Route
+              path="/yourArticle"
               element={<ArticleManage />}
               caseSensitive={true}
             />

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
-import { Image, Card, Button } from "antd";
+import { Image, Card, Button, Input } from "antd";
 import { Link } from "react-router-dom";
 import { Pagination } from "antd";
 import type { PaginationProps } from "antd";
@@ -20,11 +20,12 @@ const saveLocalIndex = (index: number) => [
 ];
 
 const ArticleList: React.FC = () => {
-  const schema = useSelector((state: any) => {
+  const mySchema = useSelector((state: any) => {
     return state.homeManagement.schema;
   });
-  //const lastCurrent = useRef(1);
+  const [schema, setSchema] = useState(mySchema);
   const [current, setCurrent] = useState(1);
+  const [keyWords, setKeyWords] = useState("");
   const onChange: PaginationProps["onChange"] = (page) => {
     saveLocalIndex(page);
     setCurrent(page);
@@ -33,7 +34,21 @@ const ArticleList: React.FC = () => {
     setCurrent(parseInt(window.localStorage.getItem("index") || "1"));
   }, []);
 
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget.value);
+    setKeyWords(e.currentTarget.value);
+  };
   let list: [] | any = [];
+  useEffect(() => {
+    const filterAns = mySchema.filter(
+      (item: any) =>
+        JSON.parse(item.people).filter((item: string) => {
+          console.log(item.includes(keyWords), "item", item);
+          return !!item.includes(keyWords);
+        }).length !== 0
+    );
+    setSchema(filterAns);
+  }, [keyWords, mySchema]);
   if (schema) {
     Array.from(new Set(list));
     for (let index = (current - 1) * 2 + 1; index <= current * 2; index++) {
@@ -41,11 +56,14 @@ const ArticleList: React.FC = () => {
       list.push(
         item ? (
           <div key={index} className={styles?.item}>
-            <div className={styles?.content}>
-              <h3>{item?.title}</h3>
-              <h4> {item?.message}</h4>
-              {item?.content}
-            </div>
+            <Link to={`/OnEdit`} state={item}>
+              <div className={styles?.content}>
+                <h3>{item?.title}</h3>
+                <h4> {item?.message}</h4>
+                {item?.content}
+              </div>
+            </Link>
+
             {item?.imgSrc && !item?.imgSrc.includes("undefined") ? (
               <div className={styles?.imgBox}>
                 <Image
@@ -57,29 +75,6 @@ const ArticleList: React.FC = () => {
                 ></Image>
               </div>
             ) : null}
-            <div className={styles.rightArea}>
-              <div className={styles.contactPerson}>
-                <p style={{ fontSize: 16, color: "#999" }}>相关成员：</p>
-                {item?.people &&
-                  JSON.parse(item?.people).map((pe: string, index: number) => {
-                    return (
-                      <div key={index} style={{ color: "red" }}>
-                        {pe}
-                      </div>
-                    );
-                  })}
-              </div>
-              <div className={styles.goEdit}>
-                <Link to={`/OnEdit`} state={item}>
-                  <Button
-                    type={"primary"}
-                    style={{ height: "100%", fontSize: 15 }}
-                  >
-                    去编辑
-                  </Button>
-                </Link>
-              </div>
-            </div>
           </div>
         ) : null
       );
@@ -88,12 +83,17 @@ const ArticleList: React.FC = () => {
 
   return (
     <div className={styles.Wrapper}>
+      <div className={styles.searchInputBox}>
+        <Input
+          placeholder="通过名字筛选…"
+          className={styles.searchInput}
+          onPressEnter={(e) => {
+            handleSearch(e);
+          }}
+        />
+      </div>
       <div className={styles.ContentWrapper}>
-        <Card
-          title="智能技术与工程学院党支部"
-          bordered={false}
-          style={{ width: 1100 }}
-        >
+        <Card bordered={false} style={{ width: 1100 }}>
           {list}
         </Card>
       </div>
@@ -103,6 +103,7 @@ const ArticleList: React.FC = () => {
           onChange={onChange}
           total={schema.length}
           pageSize={2}
+          showSizeChanger={false}
         />
       </div>
     </div>

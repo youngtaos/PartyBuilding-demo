@@ -55,14 +55,25 @@ const items = [
       "/WeChatSpider",
       <PieChartOutlined />
     ),
+    getItem(
+      <Link to="/spiderSetting">爬虫配置</Link>,
+      "/spiderSetting",
+      <PieChartOutlined />
+    ),
   ]),
-  getItem(<Link to="/people">支部人员</Link>, "/people", <UserOutlined />, ""),
-  getItem(
-    <Link to="/article">文章编辑</Link>,
-    "/article",
-    <SnippetsOutlined />,
-    ""
-  ),
+  getItem(<Link to="/people">支部成员</Link>, "/people", <UserOutlined />, ""),
+  getItem(<span>文章助手</span>, "/article", <SnippetsOutlined />, [
+    getItem(
+      <Link to="/onlineArticle">线上文章</Link>,
+      "/onlineArticle",
+      <SnippetsOutlined />
+    ),
+    getItem(
+      <Link to="/yourArticle">你的文章</Link>,
+      "/yourArticle",
+      <SnippetsOutlined />
+    ),
+  ]),
   getItem(
     <div
       onClick={() => {

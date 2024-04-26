@@ -11,7 +11,7 @@ const ArticleManage = () => {
   };
   return (
     <div className={styles.wrapper}>
-      <button onClick={onFinish}>123</button>
+      {/* <button onClick={onFinish}>123</button> */}
       <ArticleList />
     </div>
   );

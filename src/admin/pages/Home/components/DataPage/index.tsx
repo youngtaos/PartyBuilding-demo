@@ -69,7 +69,7 @@ const DataPage: React.FC = () => {
         textStyle: {
           color: "black",
           fontWeight: "bold",
-          fontSize: 22,
+          fontSize: 16,
         },
       },
 
@@ -95,7 +95,7 @@ const DataPage: React.FC = () => {
           roseType: "radius",
           label: {
             color: "rgb(232,200,100)",
-            fontSize: 20,
+            fontSize: 14,
           },
           labelLine: {
             lineStyle: {
@@ -133,9 +133,7 @@ const DataPage: React.FC = () => {
   return (
     <div className={styles.Wrapper}>
       <div className={styles.DataContent}>
-        <div className={styles.left}>
-          <DataList />
-        </div>
+        <div className={styles.left}></div>
         <div id="dora" className={styles.dora}>
           <Echart option={option} />
         </div>
