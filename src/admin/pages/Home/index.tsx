@@ -15,7 +15,7 @@ import {
 import styles from "./styles.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { getChangeSchemaAction, changePeopleInfoAction } from "./Store/action";
-
+import "./index.css";
 const handleHomePageRedirect = () => {
   window.location.href = "/";
 };

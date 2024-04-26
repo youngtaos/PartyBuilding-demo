@@ -1,0 +1,17 @@
+
+.ant-menu-item-selected{
+    background-color: #ca1c1c  !important;
+}
+
+.ant-menu{
+    background-color: #780303 !important;
+}
+
+/* .ant-menu-item-active{
+    background-color: #b80505 !important;
+} */
+
+.ant-menu-item-active{
+    background-color: #ca1c1c  !important;
+}
+
