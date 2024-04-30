@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "antd/dist/reset.css";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Login from "../admin/pages/Login";
@@ -10,8 +10,31 @@ import MyEditor from "./pages/Home/components/AticleManage/Editor";
 import MyFloatButton from "./pages/Home/components/MyFoaltButton";
 import SiteSpider from "./pages/Home/components/SiteSpider";
 import SpiderSetting from "./pages/Home/components/SpiderSetting";
+import MyModalMenu from "./pages/Home/components/AticleManage/Editor/chatMenu";
+import { Boot } from "@wangeditor/editor";
 
+function useEffectBeforeMount(effect: any, deps: any) {
+  const mounted = useRef(false);
+
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
+    return effect();
+  }, deps);
+}
 const App: React.FC = () => {
+  useEffectBeforeMount(() => {
+    const menu1Conf = {
+      key: "chat", // 定义 menu key ：要保证唯一、不重复（重要）
+      factory() {
+        return new MyModalMenu(); // 把 `YourMenuClass` 替换为你菜单的 class
+      },
+    };
+    console.log(menu1Conf);
+    Boot.registerMenu(menu1Conf);
+  }, []);
   return (
     <div>
       <HashRouter>

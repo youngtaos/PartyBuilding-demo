@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./styles.module.scss";
-import { Button, Modal, Input, Select } from "antd";
+import { Button, Modal, Input, Select, Form } from "antd";
 import PeopleList from "./Component/PeopleList";
 
 import axios from "axios";
@@ -13,6 +13,7 @@ export interface PeopleInfoType {
   articleNum: number;
   posts: number;
   avatar: string;
+  comment: string;
 }
 
 const PeopleManage: React.FC = () => {
@@ -26,6 +27,7 @@ const PeopleManage: React.FC = () => {
     articleNum: 0,
     posts: 0,
     avatar: "",
+    comment: "",
   });
   const dispatch = useDispatch();
   const addPeople = (people: PeopleInfoType) => {
@@ -57,6 +59,12 @@ const PeopleManage: React.FC = () => {
     setTemp(data);
   };
 
+  const handleCommentChange = (e: any) => {
+    let data = temp;
+    data.comment = e.target.value;
+    setTemp(data);
+  };
+
   const handleAddPeople = (people: PeopleInfoType) => {
     axios
       .post(
@@ -75,6 +83,7 @@ const PeopleManage: React.FC = () => {
           articleNum: 0,
           posts: 0,
           avatar: "",
+          comment: "",
         });
       });
   };
@@ -96,33 +105,43 @@ const PeopleManage: React.FC = () => {
           okText="确定"
           cancelText="取消"
         >
-          <Input
-            onChange={handleInputChange}
-            placeholder="请输入新增成员名字"
-          />
-          <Select
-            defaultValue={0}
-            style={{ width: 120, marginTop: 20 }}
-            onChange={handleSelectChange}
-            options={[
-              {
-                value: 0,
-                label: "党员",
-              },
-              {
-                value: 1,
-                label: "宣传委员",
-              },
-              {
-                value: 2,
-                label: "组织委员",
-              },
-              {
-                value: 3,
-                label: "支部书记",
-              },
-            ]}
-          />
+          <Form.Item label="姓名" name="disabled" valuePropName="checked">
+            <Input value={temp?.name} onChange={handleInputChange} />
+          </Form.Item>
+          <Form.Item label="职位" name="disabled">
+            <Select
+              value={temp?.posts}
+              style={{ width: 120 }}
+              onChange={handleSelectChange}
+              options={[
+                {
+                  value: 0,
+                  label: "党员",
+                },
+                {
+                  value: 1,
+                  label: "宣传委员",
+                },
+                {
+                  value: 2,
+                  label: "组织委员",
+                },
+                {
+                  value: 3,
+                  label: "支部书记",
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item label="备注：" name={"comment"}>
+            <Input.TextArea
+              id="comment"
+              style={{ width: "400px" }}
+              allowClear
+              autoSize={{ minRows: 4 }}
+              onChange={handleCommentChange}
+            ></Input.TextArea>
+          </Form.Item>
         </Modal>
       </div>
     </div>

@@ -3,6 +3,9 @@ import { Editor, Toolbar } from "@wangeditor/editor-for-react";
 import { useLocation } from "react-router-dom";
 import "@wangeditor/editor/dist/css/style.css";
 import { Button } from "antd";
+import { DomEditor } from "@wangeditor/editor";
+import { Boot } from "@wangeditor/editor";
+import MyModalMenu from "./chatMenu";
 
 const MyEditor = () => {
   const [editor, setEditor] = useState(null); // 存储 editor 实例
@@ -13,6 +16,7 @@ const MyEditor = () => {
   const [html, setHtml] = useState(HtmlString);
 
   const toolbarConfig = {};
+
   const editorConfig = {
     placeholder: "请输入内容...",
   };
@@ -21,6 +25,31 @@ const MyEditor = () => {
   };
   // 及时销毁 editor
   useEffect(() => {
+    const toolbar = DomEditor.getToolbar(editor);
+
+    // const curToolbarConfig = toolbar.getConfig();
+    if (toolbar) {
+      const curToolbarConfig = toolbar.getConfig();
+      // editor.getConfig().hoverbarKeys = {
+      //   chat: { menukeys: ["chat"] },
+      //   ...editor.getConfig().hoverbarKeys,
+      // };
+      curToolbarConfig.insertKeys = {
+        index: 0, // 插入的位置，基于当前的 toolbarKeys
+        keys: ["chat"],
+      };
+      editor.getConfig().hoverbarKeys.insertKeys = {
+        index: 0, // 插入的位置，基于当前的 toolbarKeys
+        keys: ["chat"],
+      };
+      editor.getConfig().hoverbarKeys.text.menuKeys.unshift("chat");
+      console.log(editor.getConfig(), "toolbar");
+      // toolbarConfig.insertKeys = {
+      //   index: 0, // 插入的位置，基于当前的 toolbarKeys
+      //   key: "bold",
+      // };
+    }
+
     return () => {
       if (editor == null) return;
       editor.destroy();

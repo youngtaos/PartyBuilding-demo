@@ -25,7 +25,7 @@ const PeopleList = (props: PropsType) => {
   const { peopleInfo } = props;
   const [ModalData, setModalData] = useState({
     isModalOpen: false,
-    item: { id: 0, name: "", articleNum: 0, posts: 0, avatar: "" },
+    item: { id: 0, name: "", articleNum: 0, posts: 0, avatar: "", comment: "" },
     index: 0,
   });
   const [open, setOpen] = useState(false);
@@ -36,6 +36,7 @@ const PeopleList = (props: PropsType) => {
     articleNum: 0,
     posts: 0,
     avatar: "",
+    comment: "",
   });
   const [postsName, setPostsName] = useState([
     "党员",
@@ -82,6 +83,12 @@ const PeopleList = (props: PropsType) => {
   const handleInputChange = (e: any) => {
     let data = cloneDeep(temp);
     data.name = e.target.value;
+    setTemp(data);
+  };
+
+  const handleCommentChange = (e: any) => {
+    let data = cloneDeep(temp);
+    data.comment = e.target.value;
     setTemp(data);
   };
 
@@ -222,6 +229,7 @@ const PeopleList = (props: PropsType) => {
         handleInputChange={handleInputChange}
         temp={temp}
         handleSelectChange={handleSelectChange}
+        handleCommentChange={handleCommentChange}
       />
     </div>
   );

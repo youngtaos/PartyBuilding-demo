@@ -5,6 +5,7 @@ import { PlusCircleOutlined, SyncOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import "dayjs/locale/zh-cn";
 import AddModal from "./AddModal";
+import axios from "axios";
 const SpiderSetting = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [data, setData] = useState([
@@ -35,9 +36,6 @@ const SpiderSetting = () => {
   const [size, setSize] = useState(10);
   const [messageApi, contextHolder] = message.useMessage();
 
-  const showAddModal = () => {
-    setIsAddModalOpen(true);
-  };
   const handleAddOk = () => {
     setIsAddModalOpen(false);
   };
@@ -46,29 +44,15 @@ const SpiderSetting = () => {
   };
 
   const handleGetSpiderList = (type) => {
-    const params = {
-      page,
-      size,
-    };
-    // getSpiderList(params).then((res) => {
-    //   if (!res.code) {
-    //     setData(res.data.items);
-    //     setTotal(res.data.total);
-
-    //     if (type === 1) {
-    //       messageApi.open({
-    //         type: "success",
-    //         content: "数据获取成功",
-    //       });
-    //     }
-    //   } else {
-    //     messageApi.open({
-    //       type: "error",
-    //       content: res.message?.split(";")[1] || "数据获取失败",
-    //     });
-    //   }
-    // });
+    axios.get("/api/getSpiderList").then((res) => {
+      console.log(res, "res");
+      setData(res.data.data);
+    });
   };
+
+  useEffect(() => {
+    handleGetSpiderList();
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -78,7 +62,7 @@ const SpiderSetting = () => {
           <Button type="primary">
             <SyncOutlined
               onClick={() => {
-                handleGetSpiderList(1);
+                handleGetSpiderList();
               }}
             />
           </Button>
