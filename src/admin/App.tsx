@@ -13,7 +13,7 @@ import SpiderSetting from "./pages/Home/components/SpiderSetting";
 import MyModalMenu from "./pages/Home/components/AticleManage/Editor/chatMenu";
 import { Boot } from "@wangeditor/editor";
 import PeopleDetail from "./pages/Home/components/PeopleManage/Component/PeopleDetail";
-
+import Detail from "./pages/Home/components/PeopleManage/Component/Detail";
 function useEffectBeforeMount(effect: any, deps: any) {
   const mounted = useRef(false);
 
@@ -47,6 +47,11 @@ const App: React.FC = () => {
               element={<DataPage />}
               caseSensitive={true}
             />
+            <Route
+              path="/detail"
+              element={<Detail />}
+              caseSensitive={true}
+            ></Route>
             <Route
               path="/WeChatSpider"
               element={<SiteSpider />}

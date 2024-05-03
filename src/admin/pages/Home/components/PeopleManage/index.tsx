@@ -29,6 +29,7 @@ const PeopleManage: React.FC = () => {
     avatar: "",
     comment: "",
   });
+
   const dispatch = useDispatch();
   const addPeople = (people: PeopleInfoType) => {
     const action = addPeopleAction(people);

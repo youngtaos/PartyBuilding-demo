@@ -45,7 +45,7 @@ const PeopleDetail = () => {
           content: it.content,
           imgSrc: it.imgSrc,
           message: it.message,
-          people,
+          people: JSON.stringify(people),
           title: it.title,
         });
       } else {
@@ -55,7 +55,7 @@ const PeopleDetail = () => {
             content: it.content,
             imgSrc: it.imgSrc,
             message: it.message,
-            people,
+            people: JSON.stringify(people),
             title: it.title,
           });
         }
