@@ -12,6 +12,7 @@ import SiteSpider from "./pages/Home/components/SiteSpider";
 import SpiderSetting from "./pages/Home/components/SpiderSetting";
 import MyModalMenu from "./pages/Home/components/AticleManage/Editor/chatMenu";
 import { Boot } from "@wangeditor/editor";
+import PeopleDetail from "./pages/Home/components/PeopleManage/Component/PeopleDetail";
 
 function useEffectBeforeMount(effect: any, deps: any) {
   const mounted = useRef(false);
@@ -64,6 +65,11 @@ const App: React.FC = () => {
             <Route
               path="/people"
               element={<PeopleManage />}
+              caseSensitive={true}
+            />
+            <Route
+              path="/peopleDetail"
+              element={<PeopleDetail />}
               caseSensitive={true}
             />
             <Route

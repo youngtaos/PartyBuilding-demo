@@ -1,0 +1,83 @@
+.Wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: hidden;
+    .ContentWrapper{
+        overflow-y: scroll;
+        flex: 4;
+        
+        .item{
+            height: 200px;
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #3333;
+            padding: 10px;
+            padding-bottom: 20px;
+            color: #333;
+            overflow: hidden;
+            .content{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 6;
+                -webkit-box-orient: vertical;                
+                color: #333;
+                padding-right: 50px;
+                h3{
+                    color: black;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical; 
+                }
+                h4{
+                    color: #969696;
+                }
+                .imgBox{
+                    width: 100%;
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+    .peopleWrapper{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-left: 10px;
+        .profileImage {
+            width: 100%;
+            border-bottom: 1px solid #eee;
+          }
+        
+          .info {
+            padding: 10px; // 信息区域内边距
+            font-family: Arial, sans-serif; // 字体
+            color: #333; // 文字颜色
+        
+            h2 {
+              margin-top: 0; // 姓名顶部边距
+            }
+        
+            p {
+              margin: 10px 0; // 段落上下边距
+            }
+        
+            .age, .gender {
+              font-style: italic; // 年龄和性别斜体样式
+            }
+          }
+    }
+    .bottom{
+        margin-top: 10px;
+        
+    }
+}

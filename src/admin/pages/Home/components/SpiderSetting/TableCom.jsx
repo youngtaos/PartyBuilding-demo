@@ -108,13 +108,9 @@ const TableCom = ({
       dataIndex: "schedule",
       key: "7",
       width: 100,
-      // render: (text) => {
-      //   if (text === 2) {
-      //     return <Tag color="#5FCA71">有</Tag>;
-      //   } else if (text === 1) {
-      //     return <Tag color="#FFB51F">无</Tag>;
-      //   }
-      // },
+      render: (text) => {
+        return <>每天{text}点爬取数据</>;
+      },
     },
 
     {
