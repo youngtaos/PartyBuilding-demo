@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 // import { IDomEditor, IModalMenu, SlateNode } from "@wangeditor/editor";
 import { Boot } from "@wangeditor/editor";
+import axios from "axios";
+import qs from "qs";
 
 //class MyModalMenu implements IModalMenu {    // TS 语法
 class MyModalMenu {
@@ -11,7 +13,8 @@ class MyModalMenu {
     // this.iconSvg = '<svg >...</svg>'
     this.tag = "button";
     this.showModal = true;
-    this.modalWidth = 300;
+    this.modalWidth = 600;
+    this.result = "";
   }
 
   // 菜单是否需要激活（如选中加粗文本，“加粗”菜单会激活），用不到则返回 false
@@ -39,30 +42,62 @@ class MyModalMenu {
   //exec(editor: IDomEditor, value: string | boolean) {   // TS 语法
   exec(editor, value) {
     // JS 语法
-    console.log(editor.getSelectionText());
+    axios
+      .post(
+        "/api/people/getOpenaiText",
+        qs.stringify({ content: editor.getSelectionText() }),
+        {
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        }
+      )
+      .then((res) => {
+        console.log(JSON.parse(res.data.data).result);
+        this.result = JSON.parse(res.data.data).result;
+        setTimeout(() => {
+          this.getModalContentElem();
+        }, 2000);
+      });
     // Modal menu ，这个函数不用写，空着即可
   }
 
   // 弹出框 modal 的定位：1. 返回某一个 SlateNode； 2. 返回 null （根据当前选区自动定位）
-  //getModalPositionNode(editor: IDomEditor): SlateNode | null {  // TS 语法
-  //   getModalPositionNode(editor) {
-  //     // JS 语法
-  //     return null; // modal 依据选区定位
-  //   }
+  // getModalPositionNode(editor: IDomEditor): SlateNode | null {  // TS 语法
+  getModalPositionNode(editor) {
+    // JS 语法
+    return null; // modal 依据选区定位
+  }
 
   // 定义 modal 内部的 DOM Element
 
-  //   getModalContentElem(editor) {
-  //     // JS 语法
-  //     // const $content = $("<div></div>");
-  //     // const $button = $("<button>do something</button>");
-  //     // $content.append($button);
-  //     // $button.on("click", () => {
-  //     //   editor.insertText(" hello ");
-  //     // });
-  //     // return $content[0]; // 返回 DOM Element 类型
-  //     // PS：也可以把 $content 缓存下来，这样不用每次重复创建、重复绑定事件，优化性能
-  //   }
+  getModalContentElem(editor) {
+    // 创建一个包含内容的 div 元素
+    const $div = document.createElement("div");
+    const $content = document.createElement("div");
+    $content.innerText = this.result;
+    $div.appendChild($content);
+    $div.classList.add("modalBox");
+    $content.classList.add("modalContent");
+    const $buttonBox = document.createElement("div");
+    $buttonBox.classList.add("buttonBox1234");
+    // 创建取消按钮
+    const $cancel = document.createElement("button");
+    $cancel.innerText = "取消";
+    $cancel.classList.add("buttonquxiao"); // 添加样式类以便后续样式定制
+
+    // 创建确认按钮
+    const $confirm = document.createElement("button");
+    $confirm.innerText = "采用";
+    $confirm.classList.add("buttoncaiyong"); // 添加样式类以便后续样式定制
+
+    // 将按钮添加到 $content 中
+    $buttonBox.appendChild($cancel);
+    $buttonBox.appendChild($confirm);
+
+    $div.appendChild($buttonBox);
+
+    // 将 $content 返回
+    return $div;
+  }
 }
 
 // Boot.registerMenu(menu1Conf);

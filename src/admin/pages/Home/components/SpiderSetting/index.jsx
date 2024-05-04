@@ -45,7 +45,6 @@ const SpiderSetting = () => {
 
   const handleGetSpiderList = (type) => {
     axios.get("/api/getSpiderList").then((res) => {
-      console.log(res, "res");
       setData(res.data.data);
     });
   };

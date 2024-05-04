@@ -15,3 +15,36 @@
     background-color: #ca1c1c  !important;
 }
 
+.modalBox{
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    
+}
+
+.modalContent{
+    line-height: 23px;
+    display: flex;
+    margin:  10px !important;
+    padding: 10px !important;
+    border-radius: 5px;
+    background-color: #f6f4f4 !important;
+    width: 100%;
+}
+
+.buttonBox1234{
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    margin: 10px !important;
+}
+
+.buttonquxiao{
+
+}
+
+.buttoncaiyong{
+    background-color: rgb(243, 35, 8) !important;
+    color: white !important;
+}

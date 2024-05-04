@@ -79,7 +79,6 @@ const SiteSpider: React.FC = () => {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       })
       .then((res) => {
-        console.log(res, "res");
         setSpinning(false);
         localStorage.setItem(
           "siteLastSpiderTime",

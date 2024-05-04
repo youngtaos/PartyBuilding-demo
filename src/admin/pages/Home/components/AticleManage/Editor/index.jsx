@@ -43,7 +43,6 @@ const MyEditor = () => {
         keys: ["chat"],
       };
       editor.getConfig().hoverbarKeys.text.menuKeys.unshift("chat");
-      console.log(editor.getConfig(), "toolbar");
       // toolbarConfig.insertKeys = {
       //   index: 0, // 插入的位置，基于当前的 toolbarKeys
       //   key: "bold",
@@ -58,7 +57,7 @@ const MyEditor = () => {
   }, [editor]);
 
   return (
-    <>
+    <div id="editorBox">
       <Button onClick={goBack}>返回</Button>
       <div style={{ border: "1px solid #ccc", zIndex: 100, marginTop: "15px" }}>
         <Toolbar
@@ -76,7 +75,7 @@ const MyEditor = () => {
           style={{ height: "500px" }}
         />
       </div>
-    </>
+    </div>
   );
 };
 

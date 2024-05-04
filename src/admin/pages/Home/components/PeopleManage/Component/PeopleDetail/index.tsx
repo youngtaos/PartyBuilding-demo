@@ -63,7 +63,6 @@ const PeopleDetail = () => {
     });
     setPeople(Array.from(new Set(arr)));
     setArticles(ans);
-    console.log(ans, "ans", state);
   }, [SiteSpiderData, state]);
 
   return (

@@ -33,7 +33,6 @@ const App: React.FC = () => {
         return new MyModalMenu(); // 把 `YourMenuClass` 替换为你菜单的 class
       },
     };
-    console.log(menu1Conf);
     Boot.registerMenu(menu1Conf);
   }, []);
   return (

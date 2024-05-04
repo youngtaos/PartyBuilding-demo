@@ -80,7 +80,6 @@ const SiteSpider: React.FC = () => {
         timeout: 1000000,
       })
       .then((res) => {
-        console.log(res, "res");
         setSpinning(false);
         localStorage.setItem(
           "siteLastSpiderTime",

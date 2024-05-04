@@ -21,8 +21,6 @@ const DataList: React.FC<DataListProps> = ({
     let arr: any = [];
     const ans: any = [];
     SiteSpiderData.forEach((it: any, index) => {
-      console.log(it.people, "people");
-
       let people = it.people;
       if (typeof it.people === "string") {
         people = JSON.parse(it.people);

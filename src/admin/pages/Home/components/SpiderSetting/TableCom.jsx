@@ -6,7 +6,6 @@ import SwitchItem from "./SwitchItem";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import axios from "axios";
 import qs from "qs";
-import { getStandTime } from "../../../../util";
 const { confirm } = Modal;
 
 const TableCom = ({
