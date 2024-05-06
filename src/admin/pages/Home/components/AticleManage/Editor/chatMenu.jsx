@@ -83,12 +83,19 @@ class MyModalMenu {
     const $cancel = document.createElement("button");
     $cancel.innerText = "取消";
     $cancel.classList.add("buttonquxiao"); // 添加样式类以便后续样式定制
-
+    $cancel.addEventListener("click", () => {
+      console.log("Cancel button clicked!");
+      // this.showModal = false;
+      // 这里可以添加你想要执行的操作
+    });
     // 创建确认按钮
     const $confirm = document.createElement("button");
     $confirm.innerText = "采用";
     $confirm.classList.add("buttoncaiyong"); // 添加样式类以便后续样式定制
-
+    $confirm.addEventListener("click", function () {
+      console.log("Cancel button clicked!");
+      // 这里可以添加你想要执行的操作
+    });
     // 将按钮添加到 $content 中
     $buttonBox.appendChild($cancel);
     $buttonBox.appendChild($confirm);

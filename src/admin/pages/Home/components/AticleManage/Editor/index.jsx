@@ -58,7 +58,13 @@ const MyEditor = () => {
 
   return (
     <div id="editorBox">
-      <Button onClick={goBack}>返回</Button>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Button onClick={goBack}>返回</Button>
+        <Button style={{ background: "rgb(243, 30, 30)", color: "white" }}>
+          {" "}
+          保存
+        </Button>
+      </div>
       <div style={{ border: "1px solid #ccc", zIndex: 100, marginTop: "15px" }}>
         <Toolbar
           editor={editor}
