@@ -108,7 +108,7 @@ const SiteSpider: React.FC = () => {
     <div className={styles.Wrapper}>
       {contextHolder}
       <div className={styles.btnBox}>
-        <div className={styles.left}>爬取网站信息</div>
+        <div className={styles.left}>爬取公众号信息</div>
         <Button
           type="primary"
           style={{ background: "red", color: "white" }}
