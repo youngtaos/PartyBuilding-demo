@@ -36,20 +36,6 @@ const TableCom = ({
           .then((res) => {
             console.log(res, "res");
           });
-        // deleteSpider({ srcIds: index }).then((res) => {
-        //   if (!res.code) {
-        //     handleGetSpiderList();
-        //     messageApi.open({
-        //       type: "success",
-        //       content: "删除成功",
-        //     });
-        //   } else {
-        //     messageApi.open({
-        //       type: "error",
-        //       content: res.message?.split(";")[1] || "删除失败",
-        //     });
-        //   }
-        // });
       },
       onCancel() {},
       okText: "确定",

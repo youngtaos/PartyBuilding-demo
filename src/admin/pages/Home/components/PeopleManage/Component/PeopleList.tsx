@@ -148,39 +148,55 @@ const PeopleList = (props: PropsType) => {
           .filter((item) => item.posts !== 0)
           .map((people: PeopleInfoType, index: number) => {
             return (
-              <Link to={"/peopleDetail"} state={people}>
-                <Card
-                  style={{
-                    width: 200,
-                    margin: 10,
-                  }}
-                  size={"small"}
-                  hoverable={true}
-                  cover={<img alt="example" src={people.avatar} height={160} />}
-                  actions={[
-                    <EditOutlined
-                      key="edit"
-                      onClick={() => {
-                        openModal(people, index);
+              <Card
+                style={{
+                  width: 200,
+                  margin: 10,
+                }}
+                size={"small"}
+                hoverable={true}
+                cover={
+                  <div style={{ overflow: "hidden", height: "180px" }}>
+                    <img
+                      alt="example"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        objectPosition: "top",
                       }}
-                    />,
-                    <SettingOutlined
-                      key="setting"
-                      onClick={() => {
-                        confirm(index, people.id);
-                        // handleDeletePeople(index, item.id);
-                      }}
-                    />,
-                    <EllipsisOutlined key="ellipsis" />,
-                  ]}
-                >
-                  <Meta
-                    avatar={<Avatar src={people.avatar} />}
-                    title={<div style={{ color: "red" }}>{people.name}</div>}
-                    description={postsName[people.posts]}
-                  />
-                </Card>
-              </Link>
+                      src={people.avatar}
+                      height={160}
+                    />
+                  </div>
+                }
+                actions={[
+                  <EditOutlined
+                    key="edit"
+                    onClick={() => {
+                      openModal(people, index);
+                    }}
+                  />,
+                  <SettingOutlined
+                    key="setting"
+                    onClick={() => {
+                      confirm(index, people.id);
+                      // handleDeletePeople(index, item.id);
+                    }}
+                  />,
+                  <EllipsisOutlined key="ellipsis" />,
+                ]}
+              >
+                <Meta
+                  avatar={<Avatar src={people.avatar} />}
+                  title={
+                    <Link to={"/peopleDetail"} state={people}>
+                      <div style={{ color: "red" }}>{people.name}</div>
+                    </Link>
+                  }
+                  description={postsName[people.posts]}
+                />
+              </Card>
             );
           })}
       </div>

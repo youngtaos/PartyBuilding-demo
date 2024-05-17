@@ -64,6 +64,7 @@ const PeopleManage: React.FC = () => {
     let data = temp;
     data.comment = e.target.value;
     setTemp(data);
+    console.log(e.target.value);
   };
 
   const handleAddPeople = (people: PeopleInfoType) => {
@@ -106,8 +107,8 @@ const PeopleManage: React.FC = () => {
           okText="确定"
           cancelText="取消"
         >
-          <Form.Item label="姓名" name="disabled" valuePropName="checked">
-            <Input value={temp?.name} onChange={handleInputChange} />
+          <Form.Item label="姓名" name={"name"}>
+            <Input value={temp?.name} id="name" onChange={handleInputChange} />
           </Form.Item>
           <Form.Item label="职位" name="disabled">
             <Select

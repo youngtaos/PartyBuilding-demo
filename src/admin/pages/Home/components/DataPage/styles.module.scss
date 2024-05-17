@@ -7,18 +7,30 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: row;
+        overflow: hidden;
         //background-color: blue;
         .left{
-            flex: 2;
-            height: 500px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             overflow: scroll;
+            height: 700px;
+            // overflow: hidden;
             &::-webkit-scrollbar{
                 display: none;
             }    
+            .one{
+                flex: 1;
+            }
+            .two{
+                flex: 4;
+            }
         }
         .dora{
             flex: 1;
-            height: 400px;
+            height: 500px;
         }
     }
     

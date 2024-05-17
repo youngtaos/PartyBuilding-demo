@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Echart from "./Components/Echart/index";
 import * as echarts from "echarts/core";
+import { Pie, Bar } from "@ant-design/plots";
+
 import {
   TitleComponent,
   TitleComponentOption,
@@ -129,13 +131,100 @@ const DataPage: React.FC = () => {
         console.log("success");
       });
   };
-
+  const config = {
+    data: [
+      { type: "男", value: 11 },
+      { type: "女", value: 3 },
+    ],
+    angleField: "value",
+    colorField: "type",
+    label: {
+      text: "value",
+      style: {
+        fontWeight: "bold",
+      },
+    },
+    legend: {
+      color: {
+        title: false,
+        position: "right",
+        rowPadding: 5,
+      },
+    },
+  };
+  const data = [
+    {
+      labelName: "2024年文章数",
+      value: 10,
+    },
+    {
+      labelName: "2023年文章数",
+      value: 42,
+    },
+    {
+      labelName: "2022年文章数",
+      value: 30,
+    },
+    {
+      labelName: "2021年文章数",
+      value: 36,
+    },
+  ];
+  const config2 = {
+    data,
+    xField: "labelName",
+    yField: "value",
+    paddingRight: 80,
+    style: {
+      maxWidth: 25,
+    },
+    markBackground: {
+      label: {
+        text: ({ originData }: any) => {
+          return `${(originData.value / 1000) * 100}% | ${originData.value}`;
+        },
+        position: "right",
+        dx: 80,
+        style: {
+          fill: "#aaa",
+          fillOpacity: 1,
+          fontSize: 14,
+        },
+      },
+      style: {
+        fill: "#eee",
+      },
+    },
+    scale: {
+      y: {
+        domain: [0, 100],
+      },
+    },
+    axis: {
+      x: {
+        tick: false,
+        title: false,
+      },
+      y: {
+        grid: false,
+        tick: false,
+        label: false,
+        title: false,
+      },
+    },
+    interaction: {
+      elementHighlightByColor: false,
+    },
+  };
   return (
     <div className={styles.Wrapper}>
       <div className={styles.DataContent}>
-        <div className={styles.left}></div>
         <div id="dora" className={styles.dora}>
           <Echart option={option} />
+        </div>
+        <div className={styles.left}>
+          <Pie {...config} width={200} height={300} className={styles.one} />
+          <Bar {...config2} className={styles.two} width={500} height={300} />
         </div>
       </div>
     </div>
