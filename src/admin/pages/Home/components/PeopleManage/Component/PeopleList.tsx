@@ -233,7 +233,11 @@ const PeopleList = (props: PropsType) => {
               >
                 <Meta
                   avatar={<Avatar src={people.avatar} />}
-                  title={<div style={{ color: "red" }}>{people.name}</div>}
+                  title={
+                    <Link to={"/peopleDetail"} state={people}>
+                      <div style={{ color: "red" }}>{people.name}</div>
+                    </Link>
+                  }
                   description={postsName[people.posts]}
                 />
               </Card>
