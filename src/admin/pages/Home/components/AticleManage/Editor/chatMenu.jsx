@@ -92,9 +92,20 @@ class MyModalMenu {
     const $confirm = document.createElement("button");
     $confirm.innerText = "采用";
     $confirm.classList.add("buttoncaiyong"); // 添加样式类以便后续样式定制
+    const result = this.result;
+    function copyToClipboard(text) {
+      var textarea = document.createElement("textarea");
+      textarea.value = result;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
+
     $confirm.addEventListener("click", function () {
       console.log("Cancel button clicked!");
       // 这里可以添加你想要执行的操作
+      copyToClipboard("要复制的文本内容");
     });
     // 将按钮添加到 $content 中
     $buttonBox.appendChild($cancel);
