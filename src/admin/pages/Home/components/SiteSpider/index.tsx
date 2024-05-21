@@ -75,7 +75,7 @@ const SiteSpider: React.FC = () => {
     setSpinning(true);
     setStartTime(new Date());
     axios
-      .post("/api/getData", qs.stringify({ names: JSON.stringify(names) }), {
+      .post("/api/getWxData", qs.stringify({ names: JSON.stringify(names) }), {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         timeout: 1000000,
       })

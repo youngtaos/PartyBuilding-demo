@@ -111,14 +111,14 @@ const PeopleDetail = () => {
               <span>性别:</span> <span className="age">{state.sex}</span>
             </div>
             <div>
-              <span>年龄:</span> <span className="age">{state.age}</span>
+              {/* <span>年龄:</span> <span className="age">{state.age}</span> */}
             </div>
           </Space>
           <p>
             <span>职位:</span>{" "}
             <span className="age">{postsName[state.posts]}</span>
           </p>
-          <TextArea value={12333} disabled></TextArea>
+          {/* <TextArea value={12333} disabled></TextArea> */}
         </div>
       </div>
     </div>
