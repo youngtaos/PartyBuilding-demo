@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Avatar, List, Modal, Input, Select, Card } from "antd";
 import { useDispatch } from "react-redux";
 import qs from "qs";
 import { cloneDeep } from "lodash";
-import { DeletePeopleAcion, updatePeopleAction } from "../../../Store/action";
+import {
+  DeletePeopleAcion,
+  updatePeopleAction,
+  changePeopleInfoAction,
+} from "../../../Store/action";
 import { PeopleInfoType } from "..";
 import styles from "../styles.module.scss";
 import InfoModal from "./infoModal";
@@ -31,6 +35,10 @@ const PeopleList = (props: PropsType) => {
   });
   const [open, setOpen] = useState(false);
   const [modal, contextHolder] = Modal.useModal();
+  const changePeopleInfo = (data: any) => {
+    const action = changePeopleInfoAction(data);
+    dispatch(action);
+  };
   const [temp, setTemp] = useState({
     id: 0,
     name: "",
@@ -54,6 +62,14 @@ const PeopleList = (props: PropsType) => {
   const updatePeople = (index: number, people: PeopleInfoType) => {
     const action = updatePeopleAction(index, people);
     dispatch(action);
+  };
+  const getPeopleList = () => {
+    axios.get("/api/people/getPeopleInfo").then((res) => {
+      const data = res?.data.data;
+      if (data) {
+        changePeopleInfo(data);
+      }
+    });
   };
 
   const openModal = (item: PeopleInfoType, index: number) => {
@@ -103,7 +119,7 @@ const PeopleList = (props: PropsType) => {
         { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
       )
       .then(() => {
-        deletePeople(index);
+        getPeopleList();
       });
   };
 
@@ -120,7 +136,8 @@ const PeopleList = (props: PropsType) => {
       )
       .then(() => {
         updatePeople(index, value);
-        window.location.reload();
+        // window.location.reload();
+        getPeopleList();
       });
   };
 
@@ -141,6 +158,10 @@ const PeopleList = (props: PropsType) => {
       cancelText: "取消",
     });
   };
+
+  useEffect(() => {
+    getPeopleList();
+  }, []);
   return (
     <div className={styles.list}>
       <div className={styles.postsList}>

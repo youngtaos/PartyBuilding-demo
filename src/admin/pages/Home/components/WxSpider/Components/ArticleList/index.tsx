@@ -20,10 +20,11 @@ interface DataType {
   };
   nat: string;
 }
-const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
+const ArticleList: React.FC<ArticleListProps> = (props) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<DataType[]>([]);
-
+  let { articles } = props;
+  articles = shuffleArray(articles.slice(0, 38));
   const simulateLoadMoreData = async (
     startIndex: number,
     loadCount: number
@@ -65,7 +66,13 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
   if (articles.length === 0) {
     return <></>;
   }
-
+  function shuffleArray(array: any) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
   return (
     <div id="scrollableDiv" className={styles.scrollableDiv}>
       <InfiniteScroll

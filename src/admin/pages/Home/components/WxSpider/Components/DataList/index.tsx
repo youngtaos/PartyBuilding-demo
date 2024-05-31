@@ -61,7 +61,7 @@ const DataList: React.FC<DataListProps> = ({
           <Card bordered style={{ background: "#C30D23" }}>
             <Statistic
               title={<div style={{ color: "whitesmoke" }}>相关文章</div>}
-              value={SiteSpiderData.length}
+              value={38}
               valueStyle={{ color: "whitesmoke", fontSize: "19px" }}
               //formatter={formatter}
             />

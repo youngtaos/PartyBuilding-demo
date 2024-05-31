@@ -20,7 +20,7 @@ export interface data {
 
 const Context = React.createContext({ name: "网站" });
 
-const SiteSpider: React.FC = () => {
+const WxSpider: React.FC = () => {
   const [spinning, setSpinning] = useState(false);
   const [lastSpiderTime, setLastSpiderTime] = useState(
     JSON.parse(localStorage.getItem("siteLastSpiderTime") || JSON.stringify(""))
@@ -31,6 +31,7 @@ const SiteSpider: React.FC = () => {
   const isFirst = useRef(true);
   const take = useRef(0);
   let names: Array<string> = [];
+
   const peopleInfo = useSelector((state: any) => {
     return state.homeManagement.peopleInfo;
   });
@@ -58,9 +59,7 @@ const SiteSpider: React.FC = () => {
       message: `数据爬取成功`,
       description: (
         <Context.Consumer>
-          {({ name }) =>
-            `${name}数据爬取完成! 耗时${(take.current % (1000 * 60)) / 1000}秒`
-          }
+          {({ name }) => `${name}数据爬取完成! `}
         </Context.Consumer>
       ),
       placement,
@@ -136,4 +135,4 @@ const SiteSpider: React.FC = () => {
   );
 };
 
-export default SiteSpider;
+export default WxSpider;

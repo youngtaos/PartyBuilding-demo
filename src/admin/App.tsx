@@ -14,6 +14,9 @@ import MyModalMenu from "./pages/Home/components/AticleManage/Editor/chatMenu";
 import { Boot } from "@wangeditor/editor";
 import PeopleDetail from "./pages/Home/components/PeopleManage/Component/PeopleDetail";
 import Detail from "./pages/Home/components/PeopleManage/Component/Detail";
+import HistoryArticle from "./pages/Home/components/HistoryArticle";
+import MyEditor2 from "./pages/Home/components/HistoryArticle/Editor";
+import WxSpider from "./pages/Home/components/WxSpider";
 function useEffectBeforeMount(effect: any, deps: any) {
   const mounted = useRef(false);
 
@@ -52,8 +55,8 @@ const App: React.FC = () => {
               caseSensitive={true}
             ></Route>
             <Route
-              path="/WeChatSpider"
-              element={<SiteSpider />}
+              path="/WxSpider"
+              element={<WxSpider />}
               caseSensitive={true}
             />
             <Route
@@ -83,10 +86,11 @@ const App: React.FC = () => {
             />
             <Route
               path="/yourArticle"
-              element={<ArticleManage />}
+              element={<HistoryArticle />}
               caseSensitive={true}
             />
             <Route path="OnEdit" element={<MyEditor />} />
+            <Route path="OnEdit2" element={<MyEditor2 />} />
           </Route>
         </Routes>
       </HashRouter>

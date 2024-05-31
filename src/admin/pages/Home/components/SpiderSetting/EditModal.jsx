@@ -9,6 +9,7 @@ import {
   Button,
   Select,
 } from "antd";
+import axios from "axios";
 import { useEffect, useState } from "react";
 const InputStyle = {
   paddingRight: "100px",
@@ -40,9 +41,11 @@ const EditModal = ({
   const [originUrlType, setOriginUrlType] = useState("");
   const [comment, setComment] = useState("");
   const [messageApi, contextHolder] = message.useMessage();
+  const [schedule, setSchedule] = useState("");
+  const [spiderName, setSpiderName] = useState("");
   useEffect(() => {
-    setName(itemInfo?.name);
-    setUrl(itemInfo?.url);
+    setSpiderName(itemInfo?.spiderName);
+    setSchedule(itemInfo?.schedule);
     setSpider(itemInfo?.spider);
     setOwner(itemInfo?.owner);
     setOriginUrlType(itemInfo?.originUrlType);
@@ -68,35 +71,25 @@ const EditModal = ({
   const handleFinish = () => {
     const ans = {
       id: itemInfo.id,
-      name,
-      url,
-      spider,
-      owner,
-      sendSuccInfo: sendSuccInfo ? 1 : 0,
-      sleepPage,
-      minSpiderSpan,
-      maxNodataThreshold,
-      config,
-      originUrlType,
-      comment,
-      cityId,
+      spiderName,
+      schedule,
     };
-    // editSpider(ans).then((res) => {
-    //   if (!res.code) {
-    //     messageApi.open({
-    //       type: "success",
-    //       content: "编辑成功",
-    //     });
+    axios.post("/api/editSpider").then((res) => {
+      if (!res.code) {
+        messageApi.open({
+          type: "success",
+          content: "编辑成功",
+        });
 
-    //     handleGetSpiderList();
-    //     handleOk();
-    //   } else {
-    //     messageApi.open({
-    //       type: "error",
-    //       content: res.message?.split(";")[1] || "编辑失败",
-    //     });
-    //   }
-    // });
+        // handleGetSpiderList();
+        // handleOk();
+      } else {
+        messageApi.open({
+          type: "error",
+          content: res.message?.split(";")[1] || "编辑失败",
+        });
+      }
+    });
   };
 
   const cancel = () => {

@@ -51,8 +51,8 @@ const items = [
       <PieChartOutlined />
     ),
     getItem(
-      <Link to="/WeChatSpider">公众号爬取</Link>,
-      "/WeChatSpider",
+      <Link to="WxSpider">公众号爬取</Link>,
+      "/WxSpider",
       <PieChartOutlined />
     ),
     getItem(

@@ -47,26 +47,22 @@ const People: React.FC<PeopleProps> = ({ name, setParam }) => {
   return (
     <div style={{ cursor: "pointer" }}>
       {peopleInfo?.avatar ? (
-        <Badge count={peopleInfo?.articleNum} size="small">
-          <Avatar
-            shape="square"
-            icon={<UserOutlined />}
-            src={peopleInfo.avatar}
-            onClick={() => {
-              setParam(peopleInfo.name);
-            }}
-          />
-        </Badge>
+        <Avatar
+          shape="square"
+          icon={<UserOutlined />}
+          src={peopleInfo.avatar}
+          onClick={() => {
+            setParam(peopleInfo.name);
+          }}
+        />
       ) : (
-        <Badge count={peopleInfo?.articleNum} size="small">
-          <Avatar
-            shape="square"
-            icon={<UserOutlined />}
-            onClick={() => {
-              setParam(peopleInfo.name);
-            }}
-          />
-        </Badge>
+        <Avatar
+          shape="square"
+          icon={<UserOutlined />}
+          onClick={() => {
+            setParam(peopleInfo.name);
+          }}
+        />
       )}
     </div>
   );

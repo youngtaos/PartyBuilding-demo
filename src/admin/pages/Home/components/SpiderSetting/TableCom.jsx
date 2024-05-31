@@ -19,22 +19,44 @@ const TableCom = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemInfo, setItemInfo] = useState({});
-  const showConfirm = (index) => {
+  const showConfirm_close = (index) => {
+    console.log(index, "yts1");
     confirm({
       title: "你确定要禁用这个爬虫吗?",
       icon: <ExclamationCircleFilled />,
       content: "你确定要禁用这个爬虫吗?",
       onOk() {
         axios
+          .post("/api/closeScheduleSpider", qs.stringify({ id: index }), {
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          })
+          .then((res) => {
+            console.log(res, "res");
+            handleGetSpiderList();
+          });
+      },
+      onCancel() {},
+      okText: "确定",
+      cancelText: "取消",
+    });
+  };
+  const showConfirm_open = (index) => {
+    confirm({
+      title: "你确定要启用这个爬虫吗?",
+      icon: <ExclamationCircleFilled />,
+      content: "你确定要启用这个爬虫吗?",
+      onOk() {
+        axios
           .post(
             "/api/openScheduleSpider",
-            qs.stringify({ names: JSON.stringify([]) }),
+            qs.stringify({ id: index, names: JSON.stringify([]) }),
             {
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
             }
           )
           .then((res) => {
             console.log(res, "res");
+            handleGetSpiderList();
           });
       },
       onCancel() {},
@@ -117,7 +139,7 @@ const TableCom = ({
             <a
               style={{ color: "red" }}
               onClick={() => {
-                showConfirm(text.id);
+                showConfirm_close(text.id);
               }}
             >
               禁用
@@ -127,7 +149,7 @@ const TableCom = ({
             <a
               style={{ color: "red" }}
               onClick={() => {
-                showConfirm(text.id);
+                showConfirm_open(text.id);
               }}
             >
               启用
@@ -137,11 +159,6 @@ const TableCom = ({
       ),
     },
   ];
-
-  const onShowSizeChange = (current, pageSize) => {
-    //console.log(current, pageSize);
-    setSize(pageSize);
-  };
 
   return (
     <div className={styles.tableWrapper}>

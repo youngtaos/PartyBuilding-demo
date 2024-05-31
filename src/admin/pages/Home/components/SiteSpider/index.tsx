@@ -58,9 +58,7 @@ const SiteSpider: React.FC = () => {
       message: `数据爬取成功`,
       description: (
         <Context.Consumer>
-          {({ name }) =>
-            `${name}数据爬取完成! 耗时${(take.current % (1000 * 60)) / 1000}秒`
-          }
+          {({ name }) => `${name}数据爬取完成! `}
         </Context.Consumer>
       ),
       placement,
@@ -75,7 +73,7 @@ const SiteSpider: React.FC = () => {
     setSpinning(true);
     setStartTime(new Date());
     axios
-      .post("/api/getWxData", qs.stringify({ names: JSON.stringify(names) }), {
+      .post("/api/getData", qs.stringify({ names: JSON.stringify(names) }), {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         timeout: 1000000,
       })

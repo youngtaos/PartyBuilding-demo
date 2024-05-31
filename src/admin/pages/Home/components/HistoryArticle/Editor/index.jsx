@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Editor, Toolbar } from "@wangeditor/editor-for-react";
 import { useLocation } from "react-router-dom";
 import "@wangeditor/editor/dist/css/style.css";
-import { Button } from "antd";
+import { Button, Modal } from "antd";
 import { DomEditor } from "@wangeditor/editor";
 import { Boot } from "@wangeditor/editor";
 import MyModalMenu from "./chatMenu";
@@ -10,12 +10,12 @@ import axios from "axios";
 import qs from "qs";
 import { getModeTime, getStandTime } from "../../../../../util";
 
-const MyEditor = () => {
+const MyEditor2 = () => {
   const [editor, setEditor] = useState(null); // 存储 editor 实例
 
   const { state } = useLocation();
 
-  const HtmlString = `${state.title} <img src="${state.imgSrc}"/> ${state.content} <p>${state.message}<p/>`;
+  const HtmlString = `${state.content} `;
   const [html, setHtml] = useState(HtmlString);
 
   const toolbarConfig = {};
@@ -26,14 +26,14 @@ const MyEditor = () => {
   const goBack = () => {
     window.history.go(-1);
   };
-
-  const handleAddArticle = () => {
+  const handleEditArticle = () => {
     axios
       .post(
-        "/api/article/addArticle",
+        "/api/article/editArticle",
         qs.stringify({
           content: editor.getHtml(),
           createTime: getModeTime(),
+          id: state.id,
         }),
         { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
       )
@@ -80,7 +80,7 @@ const MyEditor = () => {
         <Button onClick={goBack}>返回</Button>
         <Button
           style={{ background: "rgb(243, 30, 30)", color: "white" }}
-          onClick={handleAddArticle}
+          onClick={handleEditArticle}
         >
           {" "}
           保存
@@ -106,4 +106,4 @@ const MyEditor = () => {
   );
 };
 
-export default MyEditor;
+export default MyEditor2;
