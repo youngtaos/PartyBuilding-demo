@@ -1,5 +1,5 @@
 import { PeopleInfoType } from '../components/PeopleManage';
-import { CHANGE_SCHEMA, CHANGE_SiteSpiderData, CHANGE_PeopleInfo, Delete_People, Add_People, Update_People } from './constant';
+import { CHANGE_SCHEMA, CHANGE_SiteSpiderData, CHANGE_PeopleInfo, Delete_People, Add_People, Update_People, CHANGE_WxSpiderData } from './constant';
 
 export const getChangeSchemaAction = (schema: any) => {
     return {
@@ -12,6 +12,13 @@ export const getChangeSchemaAction = (schema: any) => {
 export const getChangeSiteSpiderDataAction = (spiderData: any) => {
     return {
         type: CHANGE_SiteSpiderData,
+        value: spiderData
+    }
+};
+
+export const getChangeWxSpiderDataAction = (spiderData: any) => {
+    return {
+        type: CHANGE_WxSpiderData,
         value: spiderData
     }
 };

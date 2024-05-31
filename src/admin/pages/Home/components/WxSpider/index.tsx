@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import qs from "qs";
 import DataList from "./Components/DataList";
-import { getChangeSiteSpiderDataAction } from "../../Store/action";
+import { getChangeWxSpiderDataAction } from "../../Store/action";
 import { getModeTime } from "../../../../util";
 export interface data {
   title: string;
@@ -40,13 +40,13 @@ const WxSpider: React.FC = () => {
     return state.homeManagement.schema;
   });
 
-  const SiteSpiderData = useSelector((state: any) => {
-    return state.homeManagement.SiteSpiderData;
+  const WxSpiderData = useSelector((state: any) => {
+    return state.homeManagement.WxSpiderData;
   });
 
   const dispatch = useDispatch();
-  const changeSiteSpiderData = (spiderData: any) => {
-    const action = getChangeSiteSpiderDataAction(spiderData);
+  const changeWxSpiderData = (spiderData: any) => {
+    const action = getChangeWxSpiderDataAction(spiderData);
     dispatch(action);
   };
   const openNotification = (placement: any) => {
@@ -84,17 +84,20 @@ const WxSpider: React.FC = () => {
           JSON.stringify(getModeTime() || "")
         );
 
-        changeSiteSpiderData(res.data.data);
+        changeWxSpiderData(res.data.data);
         openNotification("topRight");
       });
   };
 
   useEffect(() => {
-    if (isFirst && schema.length !== 0) {
-      changeSiteSpiderData(schema);
-      isFirst.current = false;
-    }
-  }, [schema, isFirst]);
+    axios.get("/api/showWxData").then((res) => {
+      const data = res?.data.data;
+      if (data) {
+        changeWxSpiderData(data);
+        isFirst.current = false;
+      }
+    });
+  }, [isFirst]);
 
   useEffect(() => {
     setLastSpiderTime(
@@ -126,7 +129,7 @@ const WxSpider: React.FC = () => {
         <Skeleton active />
       ) : (
         <DataList
-          SiteSpiderData={SiteSpiderData}
+          WxSpiderData={WxSpiderData}
           take={take.current}
           lastSpiderTime={lastSpiderTime}
         ></DataList>

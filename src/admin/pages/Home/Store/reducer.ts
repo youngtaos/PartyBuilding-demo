@@ -1,5 +1,5 @@
 import { original, produce } from 'immer';
-import { Add_People, CHANGE_PeopleInfo, CHANGE_SiteSpiderData, CHANGE_SCHEMA, Delete_People, Update_People } from './constant';
+import { Add_People, CHANGE_PeopleInfo, CHANGE_SiteSpiderData, CHANGE_SCHEMA, Delete_People, Update_People, CHANGE_WxSpiderData } from './constant';
 
 type schemaType = {
     academy: string,
@@ -20,7 +20,17 @@ type SiteSpiderData = {
     people: [],
     title: string,
 }
+type WxSpiderData = {
+    academy: string,
+    content: string,
+    id: number,
+    imgSrc: string,
+    message: string,
+    people: [],
+    title: string,
+}
 const initialSiteSpiderData: SiteSpiderData[] = [];
+const initialWxSpiderData: WxSpiderData[] = [];
 const initialSchema: schemaType[] = [];
 const defaultState = {
     schema: initialSchema,
@@ -29,7 +39,8 @@ const defaultState = {
         "name": "",
         "articleNum": 0
     }],
-    SiteSpiderData: initialSiteSpiderData
+    SiteSpiderData: initialSiteSpiderData,
+    WxSpiderData: initialWxSpiderData,
 }
 
 export const HomeMangeReducer = (state = defaultState, action: any) => produce(state, (draft) => {
@@ -39,6 +50,9 @@ export const HomeMangeReducer = (state = defaultState, action: any) => produce(s
             break;
         case CHANGE_SiteSpiderData:
             draft.SiteSpiderData = action.value;
+            break;
+        case CHANGE_WxSpiderData:
+            draft.WxSpiderData = action.value;
             break;
         case CHANGE_PeopleInfo:
             draft.peopleInfo = action.value;

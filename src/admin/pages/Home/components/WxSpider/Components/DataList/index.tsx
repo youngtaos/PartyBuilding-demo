@@ -4,13 +4,13 @@ import People from "../PeopleList/People";
 import ArticleList from "../ArticleList";
 
 type DataListProps = {
-  SiteSpiderData: [];
+  WxSpiderData: [];
   take: number;
   lastSpiderTime: string;
 };
 
 const DataList: React.FC<DataListProps> = ({
-  SiteSpiderData,
+  WxSpiderData,
   take,
   lastSpiderTime,
 }) => {
@@ -20,7 +20,7 @@ const DataList: React.FC<DataListProps> = ({
   useEffect(() => {
     let arr: any = [];
     const ans: any = [];
-    SiteSpiderData.forEach((it: any, index) => {
+    WxSpiderData.forEach((it: any, index) => {
       let people = it.people;
       if (typeof it.people === "string") {
         people = JSON.parse(it.people);
@@ -52,7 +52,7 @@ const DataList: React.FC<DataListProps> = ({
     });
     setPeople(Array.from(new Set(arr)));
     setArticles(ans);
-  }, [SiteSpiderData, param]);
+  }, [WxSpiderData, param]);
 
   return (
     <Space direction="vertical" size={20}>
@@ -61,7 +61,7 @@ const DataList: React.FC<DataListProps> = ({
           <Card bordered style={{ background: "#C30D23" }}>
             <Statistic
               title={<div style={{ color: "whitesmoke" }}>相关文章</div>}
-              value={38}
+              value={articles.length}
               valueStyle={{ color: "whitesmoke", fontSize: "19px" }}
               //formatter={formatter}
             />
