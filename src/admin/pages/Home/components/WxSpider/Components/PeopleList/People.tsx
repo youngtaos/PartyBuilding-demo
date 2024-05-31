@@ -15,6 +15,7 @@ type PeopleInfoType = {
   id: number;
   name: string;
   posts: number;
+  wxArticleNum: number | string;
 };
 
 const People: React.FC<PeopleProps> = ({ name, setParam }) => {
@@ -24,6 +25,7 @@ const People: React.FC<PeopleProps> = ({ name, setParam }) => {
     id: 0,
     name: "",
     posts: 0,
+    wxArticleNum: 0,
   });
   const handleGetPeopleInfoByName = (name: string) => {
     axios
@@ -38,31 +40,32 @@ const People: React.FC<PeopleProps> = ({ name, setParam }) => {
         setPeopleInfo(res.data.data[0]);
       });
   };
-  const selectPeople = (name: string) => {
-    setParam(name);
-  };
   useEffect(() => {
     handleGetPeopleInfoByName(name);
   }, [name]);
   return (
     <div style={{ cursor: "pointer" }}>
       {peopleInfo?.avatar ? (
-        <Avatar
-          shape="square"
-          icon={<UserOutlined />}
-          src={peopleInfo.avatar}
-          onClick={() => {
-            setParam(peopleInfo.name);
-          }}
-        />
+        <Badge count={peopleInfo?.wxArticleNum} size="small">
+          <Avatar
+            shape="square"
+            icon={<UserOutlined />}
+            src={peopleInfo.avatar}
+            onClick={() => {
+              setParam(peopleInfo.name);
+            }}
+          />
+        </Badge>
       ) : (
-        <Avatar
-          shape="square"
-          icon={<UserOutlined />}
-          onClick={() => {
-            setParam(peopleInfo.name);
-          }}
-        />
+        <Badge count={peopleInfo?.wxArticleNum} size="small">
+          <Avatar
+            shape="square"
+            icon={<UserOutlined />}
+            onClick={() => {
+              setParam(peopleInfo.name);
+            }}
+          />
+        </Badge>
       )}
     </div>
   );
